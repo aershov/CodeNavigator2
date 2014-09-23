@@ -1,0 +1,1065 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+  <title>Code Navigator</title>
+  <link rel="stylesheet" type="text/css" href="javahelp.css">
+</head>
+<body bgcolor="#ffffff" style="font-family: sans-serif;">
+<h1>Code Navigator</h1>
+
+<div>
+  Understanding other people's code or your own code in
+  complex systems is a challenging problem in software development. This
+  plugin supports developers in learning the dependencies and couplings
+  in object oriented systems.
+</div>
+
+<div>
+  Three major plugin-functions can be used:
+  <ul>
+    <li>class cloud diagram</li>
+    <li>graphical navigation between dependent classes</li>
+    <li>creation of UML diagrams</li>
+  </ul>
+  <div>
+    The class cloud diagram should be used as a first step when trying
+    to understand an object oriented system. It shows all project classes
+    in a single diagram as a cloud, very similar to tag clouds known from
+    web-applications. Some of the most important classes can such be found
+    by using the class cloud to be further investigated by using the
+    graphical navigator or the source code.
+  </div>
+  <div>
+    Graphical navigation can be used to find and understand all
+    dependencies (using classes, used classes, extending classes and
+    extended classes of some subject class).
+  </div>
+  <div>
+    As soon as the developer has understood which classes interact in
+    which way, UML diagrams should be created that condense this knowledge.
+    Though it is really helpful to have at least some UML diagrams, many
+    software systems are not documented well or the existing diagrams are
+    totally outdated. This plugin helps to create static class diagrams that
+    always can be kept in sync with the current state of a system.
+  </div>
+</div>
+
+<h2>Class Cloud</h2>
+
+<div>
+  While tag clouds are well known in web applications to show the tags
+  that were most often attached to images, videos or links, the class
+  cloud highlights classes that have many dependencies to other
+  classes in an object oriented system. To open the class cloud diagram,
+  choose <i>Analyze Class Cloud</i> from the <i>Analyze</i>-menu in the
+  main menu bar.
+  <center>
+    <IMG style="MARGIN: 10px" alt="Analyze Class Cloud Menu" src="images/Analyze_Class_Cloud_Menu.png" align=middle>
+  </center>
+  After selecting the menu item, all project classes will be analzed to find their
+  dependencies. This process can take some time. Small projects will be analyzed in
+  a couple of seconds while huge projects may need up to a few minutes. A progress bar will
+  be displayed during the analyzation process:
+  <center>
+    <IMG style="MARGIN: 10px" alt="Class Cloud Progress" src="images/Class_Cloud_Progress.png" align=middle>
+  </center>
+  As soon as all dependencies are analyzed, a new tool window will be opened. This
+  tool window will show the class cloud and a tool bar.
+  <center>
+    <IMG style="MARGIN: 10px" alt="Class Cloud tool window" src="images/Class_Cloud_640.png" align=middle>
+  </center>
+  The class cloud shows all classes of the current project in a single diagram. The
+  class color and font size depends on several attributes:
+    <center>
+    <table style="MARGIN: 10px">
+      <tbody>
+        <tr>
+          <td style="FONT-WEIGHT: bold; COLOR: white; BACKGROUND-COLOR: #807f7f">View attribute</td>
+          <td style="FONT-WEIGHT: bold; COLOR: white; BACKGROUND-COLOR: #807f7f">Description</td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            <span style="background-color:rgb(152, 164, 184);">Color</span>
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            This color is used for classes that use other classes, but are not used by
+            other classes. These classes will be shown at the left border of the class cloud.
+            Additionally this color is used for classes that are used by other classes, but do
+            not use other classes themselves. These classes will be shown at the right border
+            of the class cloud.
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            <span style="background-color:rgb(242, 162,  40);">Color</span>
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            This color is used for classes that extend other classes, but are not extended by
+            other classes. These classes will be shown at the bottom border of the class cloud.
+            Additionally this color is used for classes that are extended by other classes, but do
+            not extend other classes themselves. These classes will be shown at the top border
+            of the class cloud.
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            <span style="background-color:rgb(240, 233, 194);">Color</span>
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            This color is used for classes without any special meaning.
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            Other colors
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            Classes that share two of the attributes that will lead to a special color will
+            be shown as a mixture of the colors described above.
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            Font-size
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+             The more dependencies from and to other classes, the bigger is the classes' font.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </center>
+  <div>
+    All these styles and the position of each class can be used to find candidates for
+    manual investigation starting points. After opening a project that contains several thousand
+    classes, if you do not know all the classes and their relationships, it is very difficult to
+    find reasonable classes that should be read first. All classes that have many
+    dependencies to other classes are probably important, so these classes are highlighted by
+    using a big font and you can choose one of these classes very quickly. You can jump directly
+    to the source code or you can first open the <i>big</i> classes in the graphical navigator
+    to further explore the dependencies before jumping to the source code.
+  </div>
+  <div>
+    Classes that are used by other classes, but do not use other classes themselves are utility
+    classes in many cases, so these classes are candidates for a detailed look, too. These classes
+    can be found near the right border of the class cloud and they are colored in blue (this is
+    the standard color, which can be changed). Classes that use other classes, but are not used
+    by other classses can be found near the left border of the class cloud and are colored in blue,
+    too. These classes are often action classes, main classes or some other type of <i>start</i>
+    classes and are thus candidates for further investigation in order to understand the complete
+    system.
+  </div>
+  <div>
+    Classes that are extended by other classes, but do not extend other classes themselves are base
+    classes in many cases, so these classes are candidates for a detailed look, too. These classes
+    can be found near the top border of the class cloud and they are colored in orange (this is
+    the standard color, which can be changed). Classes that extend other classes, but are not extended
+    by other classses can be found near the bottom border of the class cloud and are colored in orage,
+    too. These classes are often specialized classes and are thus candidates for further investigation
+    in order to understand the complete system.
+    <center>
+      <IMG style="MARGIN: 10px" alt="Class Cloud Description" src="images/Class_Cloud_Description.png" align=middle>
+    </center>
+  </div>
+  The mouse wheel can be used to zoom into the diagram and dragging the mouse with pressed right
+  mouse button pans the view. There is a simple popup menu that appears on a right click on any
+  class in the class cloud:
+  <center>
+    <IMG style="MARGIN: 10px" alt="Class Cloud Popup Menu" src="images/Class_Cloud_PopupMenu.png" align=middle>
+  </center>
+  <center>
+    <table style="MARGIN: 10px">
+      <tbody>
+        <tr>
+          <td style="FONT-WEIGHT: bold; COLOR: white; BACKGROUND-COLOR: #807f7f">Item</td>
+          <td style="FONT-WEIGHT: bold; COLOR: white; BACKGROUND-COLOR: #807f7f">Description</td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8"><i>Show class in graphical navigator</i></td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            Opens graphical navigator tool window with selected class as subject class.
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4"><i>Show class in editor</i></td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            Shows source of selected class in text editor.
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8"><i>Show dependencies</i></td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            Highlights dependencies between selected class and all other classes.
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4"><i>Refresh Class Cloud</i></td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            Refreshed the class cloud by analyzing all project classes. This can be used to show
+            changes that affected onw or more classes.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </center>
+  <div>
+    Choosing the menu item <i>Show dependencies</i> should show a diagram like this:
+    <center>
+      <IMG style="MARGIN: 10px" alt="Highlighted dependencies" src="images/Class_Cloud_Dependencies.png" align=middle>
+    </center>
+  </div>
+  <div>
+    The class cloud diagram tool bar contains several components and buttons:
+  </div>
+  <center>
+    <table style="MARGIN: 10px">
+      <tbody>
+        <tr>
+          <td style="FONT-WEIGHT: bold; COLOR: white; BACKGROUND-COLOR: #807f7f">Item</td>
+          <td style="FONT-WEIGHT: bold; COLOR: white; BACKGROUND-COLOR: #807f7f">Keyboard Shortcut</td>
+          <td style="FONT-WEIGHT: bold; COLOR: white; BACKGROUND-COLOR: #807f7f">Description</td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            <IMG alt="diagram combo box" src="images/Class_Cloud_search_field.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            Here you can enter any case sensitive string and all classes with a qualified class
+            name that contains this string will be highlighted while all other classes will be
+            ghosted (see image below for an example).
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            <IMG alt="open" src="images/refresh.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            This button refreshes the class cloud be reanalyzing all classes.
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            <IMG alt="settings" src="images/editSource.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            This is a toggle button with two states: in the selected state, a click on a
+            class in the class cloud will jump to the source of that class. In the unselected
+            state, a click on a class in the class cloud will highlight the class and all
+            other classes in the diagram that are dependent to this class or that this class
+            is dependent to.
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            <IMG alt="rename" src="images/reset.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            This will reset the highlighted classes so there are no longer any ghosted classes.
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            <IMG alt="refresh diagram" src="images/zoomIn.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            CTRL +
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            Zoom in
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            <IMG alt="zoom in" src="images/zoomOut.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            CTRL -
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            Zoom out
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            <IMG alt="zoom out" src="images/fitContent.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            CTRL F
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            Fit diagram to view
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            <IMG alt="fit diagram" src="images/export.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            Exports the diagram to an image (JPG, PNG or GIF).
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            <IMG alt="print diagram" src="images/print.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            Print diagram
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            <IMG alt="print preview" src="images/printPreview.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            Show print preview
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            <IMG alt="close diagram" src="images/close.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            Close diagram and dispose all contents
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            <IMG alt="settings" src="images/settings.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            Open plugin settings
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            <IMG alt="help" src="images/help.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            Show this help
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </center>
+  <div>
+    If a user highlighted classes by name using the text field, the diagram should look like this:
+    <center>
+      <IMG style="MARGIN: 10px" alt="Highlighted dependencies" src="images/Class_Cloud_Search.png" align=middle>
+    </center>
+  </div>
+</div>
+
+<h2>Graphical Navigator</h2>
+
+<div>
+  The major feature of this plugin is graphical navigation between
+  dependent classes. A new tool window (<i>Graphical Navigator</i>)
+  can be opened by selecting menu item <i>Show in Graphical Navigator</i>
+  in one of the context sensitive menus after right clicking a class
+  in the class tree of the project view or right clicking on any symbol
+  in a Java editor. Alternatively <i>ctrl-shift-G</i> can be used
+  while the cursor is somewhere on a symbol in a Java editor to open the
+  tool window.
+  <center>
+    <IMG style="MARGIN: 10px" alt="Editor Popup Menu" src="images/Editor_PopupMenu.png" align=middle>
+  </center>
+  The code navigator shows the subject class and all
+  dependent classes in a graph that uses UML-notation to display the
+  classes and their dependencies. The central node is the subject node,
+  all classes that use the central class are shown at the left, all classes
+  that are used by the central class are shown at the right, all classes
+  that extend the subject class are shown at the bottom and classes that are
+  extended by the subject class are shown at the top of the graph. The mouse
+  wheel can be used for zooming the graph. Dragging the mouse with pressed
+  right mouse button moves the view port.
+  <center>
+    <IMG style="MARGIN: 10px" alt="Graphical Navigator" src="images/GraphicalNavigator_640.png" align=middle>
+  </center>
+</div>
+
+<div>
+There are several actions available in the grapical navigator tool window:
+<ul>
+  <li>
+    a click on the central class node opens the
+    corresponding class in a Java editor
+  </li>
+  <li>
+    a click on any other class node navigates to the
+    corresponding class within the graphical navigator
+  </li>
+  <li>
+    a click on an edge that points to the central class
+    node opens the class associated with the edge source node in a Java editor and
+    points the cursor to the usage position.
+  </li>
+  <li>
+    a click on an edge that points from the central class
+    to some other node opens the class associated with the edge target node in a
+    Java editor and points the cursor to the class definition.
+  </li>
+  <li>
+    a shift click on an edge that points from the central class to some other node opens the
+    class associated with the subject node in a Java editor and points the cursor to the usage position.
+  </li>
+</ul>
+The toolbar at the top of the graphical navigation window provides several functions:
+<center>
+  <table style="MARGIN: 10px">
+    <tbody>
+      <tr>
+        <td style="FONT-WEIGHT: bold; COLOR: white; BACKGROUND-COLOR: #807f7f">Item</td>
+        <td style="FONT-WEIGHT: bold; COLOR: white; BACKGROUND-COLOR: #807f7f">Keyboard Shortcut</td>
+        <td style="FONT-WEIGHT: bold; COLOR: white; BACKGROUND-COLOR: #807f7f">Description</td>
+      </tr>
+      <tr>
+        <td style="BACKGROUND-COLOR: #e8e8e8">
+          <IMG alt="back" src="images/back.png">
+        </td>
+        <td style="BACKGROUND-COLOR: #e8e8e8">
+          CTRL LEFT
+        </td>
+        <td style="BACKGROUND-COLOR: #e8e8e8">
+          Step back in navigation history
+        </td>
+      </tr>
+      <tr>
+        <td style="BACKGROUND-COLOR: #c4c4c4">
+          <IMG alt="forward" src="images/forward.png">
+        </td>
+        <td style="BACKGROUND-COLOR: #c4c4c4">
+          CTRL RIGHT
+        </td>
+        <td style="BACKGROUND-COLOR: #c4c4c4">
+          Step forward in navigation history
+        </td>
+      </tr>
+      <tr>
+        <td style="BACKGROUND-COLOR: #e8e8e8">
+          <IMG alt="zoom in" src="images/zoomIn.png">
+        </td>
+        <td style="BACKGROUND-COLOR: #e8e8e8">
+          CTRL +
+        </td>
+        <td style="BACKGROUND-COLOR: #e8e8e8">
+          Zoom in
+        </td>
+      </tr>
+      <tr>
+        <td style="BACKGROUND-COLOR: #c4c4c4">
+          <IMG alt="zoom out" src="images/zoomOut.png">
+        </td>
+        <td style="BACKGROUND-COLOR: #c4c4c4">
+          CTRL -
+        </td>
+        <td style="BACKGROUND-COLOR: #c4c4c4">
+          Zoom out
+        </td>
+      </tr>
+      <tr>
+        <td style="BACKGROUND-COLOR: #e8e8e8">
+          <IMG alt="fit content" src="images/fitContent.png">
+        </td>
+        <td style="BACKGROUND-COLOR: #e8e8e8">
+          CTRL F
+        </td>
+        <td style="BACKGROUND-COLOR: #e8e8e8">
+          Fit diagram to view
+        </td>
+      </tr>
+      <tr>
+        <td style="BACKGROUND-COLOR: #c4c4c4">
+          <IMG alt="export file" src="images/export.png">
+        </td>
+        <td style="BACKGROUND-COLOR: #c4c4c4">
+
+        </td>
+        <td style="BACKGROUND-COLOR: #c4c4c4">
+          Export diagram to image (GIF, JPEG or PNG)
+        </td>
+      </tr>
+      <tr>
+        <td style="BACKGROUND-COLOR: #e8e8e8">
+          <IMG alt="print diagram" src="images/print.png">
+        </td>
+        <td style="BACKGROUND-COLOR: #e8e8e8">
+
+        </td>
+        <td style="BACKGROUND-COLOR: #e8e8e8">
+          Print diagram
+        </td>
+      </tr>
+      <tr>
+        <td style="BACKGROUND-COLOR: #c4c4c4">
+          <IMG alt="print preview" src="images/printPreview.png">
+        </td>
+        <td style="BACKGROUND-COLOR: #c4c4c4">
+
+        </td>
+        <td style="BACKGROUND-COLOR: #c4c4c4">
+          Show print preview
+        </td>
+      </tr>
+      <tr>
+        <td style="BACKGROUND-COLOR: #e8e8e8">
+          <IMG alt="settings" src="images/settings.png">
+        </td>
+        <td style="BACKGROUND-COLOR: #e8e8e8">
+
+        </td>
+        <td style="BACKGROUND-COLOR: #e8e8e8">
+          Open graphical navigator settings
+        </td>
+      </tr>
+      <tr>
+        <td style="BACKGROUND-COLOR: #c4c4c4">
+          <IMG alt="help" src="images/help.png">
+        </td>
+        <td style="BACKGROUND-COLOR: #c4c4c4">
+
+        </td>
+        <td style="BACKGROUND-COLOR: #c4c4c4">
+          Show plugin help
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</center>
+A right click on a class in the graph shows a popup menu that contains the same menu items as
+a popup menu that is described in the UML diagrams section below.
+<center>
+  <IMG style="MARGIN: 10px" alt="Graphical Navigator Popup Menu" src="images/GraphicalNavigator_PopupMenu.png"
+       align=middle>
+</center>
+</div>
+
+<h2>UML Diagrams</h2>
+
+<div>
+  Another major feature of this plugin is creation of static UML class
+  diagrams. A new tool window (<i>UML Diagrams</i>) can be opened by selecting
+  menu item <i>Add to UML Diagram</i> in one of the context sensitive
+  menus after right clicking a class in the class tree of the project
+  view or right clicking on any symbol in a Java editor. Without any existing
+  diagram, there is only one sub menu item: <i>New Diagram</i>.
+  <center>
+    <IMG style="MARGIN: 10px" alt="Project Popup Menu" src="images/ProjectView_PopupMenu.png" align=middle>
+  </center>
+  By selecting this menu item, a name for a new diagram is requested and
+  the diagram tool window is opened.
+  <center>
+    <IMG style="MARGIN: 10px" alt="UML Diagram" src="images/UMLDiagram_640.png" align=middle>
+  </center>
+  The diagram will contain the class that was just added. After this first step, a
+  new sub menu item will appear below the <i>New Diagram</i> item, that can be used
+  to add further classes to the existing diagram. Although you can use this menu item
+  over and over again to add more classes to a diagram, this is not the preferred way to
+  create a diagram. There are two problems that must be solved:
+  <ul>
+    <li>
+      all important dependencies between classes in a
+      diagram should be part of the diagram as associations that connect the
+      classes.
+    </li>
+    <li>
+      it should be as easy as possible to keep a diagram in sync
+      with the code
+    </li>
+  </ul>
+  These two problems are solved by adding further classes and
+  associations to a diagram in special way. A right click on a class in a
+  diagram shows a popup menu.
+  <center>
+    <IMG style="MARGIN: 10px" alt="UML Diagram Popup Menu" src="images/UMLDiagram_PopupMenu.png" align=middle>
+  </center>
+  <center>
+    <table style="MARGIN: 10px">
+      <tbody>
+        <tr>
+          <td style="FONT-WEIGHT: bold; COLOR: white; BACKGROUND-COLOR: #807f7f">Item</td>
+          <td style="FONT-WEIGHT: bold; COLOR: white; BACKGROUND-COLOR: #807f7f">Description</td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8"><i>Add classes | with any dependencies</i></td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            adds all classes of the project and the corresponding
+            associations to this diagram, that are dependent to the selected subject class or that the subject
+            class is dependent to
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4"><i>Add classes | that are using class</i></td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            does the same as first menu item of this group but restricts
+            the added classes to classes that use the selected subject class
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8"><i>Add classes | that are used by class</i></td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            does the same as first menu item of this group but restricts the
+            added classes to classes that are used by the selected subject class
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4"><i>Add classes | that are extending class</i></td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            does the same as first menu item of this group but
+            restricts the added classes to classes that extend the selected subject class
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8"><i>Add classes | that are extended by class</i></td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            does the same as first menu item of this group but restricts
+            the added classes to classes that are extended by the selected subject class
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4"><i>Add classes | using or used via fields</i></td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            does the same as first menu item of this group but restricts
+            the added classes to classes that use ore are used by subject class via fields
+          </td>
+        </tr>
+
+
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8;border-top:12px white solid;"><i>Connect all classes | with any dependencies</i></td>
+          <td style="BACKGROUND-COLOR: #e8e8e8;border-top:12px white solid;">
+            adds all known associations between all classes that are
+            already contained in the diagram
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4"><i>Connect all classes | that use each other</i></td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            does the same as first menu item of this group but restricts
+            the added classes to classes that use each other
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8"><i>Connect all classes | that extend each other</i></td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            does the same as first menu item of this group but restricts
+            the added classes to classes that extend each other
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4"><i>Connect all classes | using or used via fields</i></td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            does the same as first menu item of this group but restricts
+            the added classes to classes that use each other via fields
+          </td>
+        </tr>
+
+
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8;border-top:12px white solid;"><i>Connect class to existing classes | with any dependencies</i></td>
+          <td style="BACKGROUND-COLOR: #e8e8e8;border-top:12px white solid;">
+            adds all known associations between the current
+            class and all classes that are already contained in the diagram
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4"><i>Connect class to existing classes | that are using class</i></td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            does the same as first menu item of this group
+            but restricts the added associations to classes are using the current class
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8"><i>Connect class to existing classes | that are used by class</i></td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            does the same as first menu item of this group
+            but restricts the added associations to classes are used by the current class
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4"><i>Connect class to existing classes | that are extending class</i></td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            does the same as first menu item of this group
+            but restricts the added associations to classes are extending the current class
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8"><i>Connect class to existing classes | that are extended by class</i></td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            does the same as first menu item of this
+            group but restricts the added associations to classes are extended by the current class
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4"><i>Connect class to existing classes | using or used via fields</i></td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            does the same as first menu item of this group
+            but restricts the added associations to classes are using or are used by the current class via fields
+          </td>
+        </tr>
+
+
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8;border-top:12px white solid;"><i>Change visibility for current class | Toggle Fields</i></td>
+          <td style="BACKGROUND-COLOR: #e8e8e8;border-top:12px white solid;">
+            Toggles visibility of field compartment for current class
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4"><i>Change visibility for current class | Toggle Methods</i></td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            Toggles visibility of method compartment for current class
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8"><i>Change visibility for current class | Toggle Fields and Methods</i></td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            Toggles visibility of field and method compartments for current class
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4"><i>Change visibility for current class | Hide Fields and Methods</i> </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            Hides field and method compartments for current class
+          </td>
+        </tr>
+
+
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8;border-top:12px white solid;"><i>Change visibility for all classes | Toggle Fields</i></td>
+          <td style="BACKGROUND-COLOR: #e8e8e8;border-top:12px white solid;">
+            Toggles visibility of field compartment for all classes
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4"><i>Change visibility for all classes | Toggle Methods</i></td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            Toggles visibility of method compartment for all classes
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8"><i>Change visibility for all classes | Toggle Fields and Methods</i></td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            Toggles visibility of field and method compartments for all classes
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4"><i>Change visibility for all classes | Hide Fields and Methods</i></td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            Hides field and method compartments for all classes
+          </td>
+        </tr>
+
+
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8;border-top:12px white solid;"><i>Remove class</i></td>
+          <td style="BACKGROUND-COLOR: #e8e8e8;border-top:12px white solid;">
+            Removes the selected class and all related associations from the diagram. There is one difference
+            to most of the other commands: no new layout is computed. This way it is much easier to remove
+            several classes from the diagram without searching for connected classes over and over. To compute
+            a new layout, just press the <i>Refresh</i>-button in the tool bar.
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4"><i>Clear diagram</i></td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            Removes all classes and all associations from the diagram
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8"><i>Show class in graphical navigator</i></td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            Rhows the selected class in the <i>Graphical Navigator</i> tool window.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </center>
+  These menu items (except <i>Show class in graphical navigator</i> and the items that affect the compartment
+  visibility) do not only change the current diagram, but also add a step to a list of creation steps.
+  When the <i>IDEA</i> project is closed, it is not the diagram that is saved in the <i>IDEA</i> project file,
+  but this list of creation steps. There are several consequences of this way to create UML diagrams.
+</div>
+
+<div>
+  First and most important, the diagram can be recreated at any time to
+  keep the diagram and the code in sync. The recreated diagram will
+  include all changes, so added classes or associations will be
+  part of the recreated diagram. Classes that were removed will be also
+  removed from the diagram. Renamed or moved classes or classes contained
+  in packages that were renamed or moved will show the new name in the diagram,
+  so all refactorings to classes and packages and even undo operations to these
+  refactorings will always be kept in sync with all UML diagrams.
+</div>
+
+<div>
+  Another consequence is the fact, that manual changes to the diagram
+  make almost no sense. If the user had changed the position of some
+  class within the diagram or had layouted some edges by hand, these
+  changes would be lost after diagram recreation, so manual changes to a
+  diagram are not supported. Whether a diagram looks nice or not, is therefore
+  completely dependent on the algorithm that computes the diagram layout.
+  Fortunately, the layout algorithm of the <i>yfiles</i> library that
+  is used by <i>IDEA</i>, is really sophisticated and produces acceptable
+  diagrams in almost all cases.
+</div>
+
+<div>
+The toolbar at the top of the UML diagram window provides several functions:
+  <center>
+    <table style="MARGIN: 10px">
+      <tbody>
+        <tr>
+          <td style="FONT-WEIGHT: bold; COLOR: white; BACKGROUND-COLOR: #807f7f">Item</td>
+          <td style="FONT-WEIGHT: bold; COLOR: white; BACKGROUND-COLOR: #807f7f">Keyboard Shortcut</td>
+          <td style="FONT-WEIGHT: bold; COLOR: white; BACKGROUND-COLOR: #807f7f">Description</td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            <IMG alt="diagram combo box" src="images/DiagramComboBox.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            Combobox for selecting current diagram
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            <IMG alt="open" src="images/open.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            Open saved diagram(s)
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            <IMG alt="settings" src="images/save.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            Save one or all diagrams to diagram XML file or save current diagram as JPG, GIF or PNG image or
+            as SVG vector graphics file (to be opened with tools like
+            <a href="http://www.inkscape.org/">InkScape</a>) or as graphml graph file (to be opened with tools like
+            <a href="http://www.yworks.com">yed</a>).
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            <IMG alt="rename" src="images/rename.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            Rename current diagram
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            <IMG alt="navigate back" src="images/back.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            CTRL LEFT
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            Navigate back in diagram creation command list
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            <IMG alt="navigate forward" src="images/forward.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            CTRL RIGHT
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            Navigate forward in diagram creation command list
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            <IMG alt="refresh diagram" src="images/refresh.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            CTRL R
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            Refresh diagram by executing all diagram creation steps
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            <IMG alt="edit steps" src="images/quickList.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            Edit diagram creation steps (see dialog below)
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            <IMG alt="zoom in" src="images/zoomIn.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            CTRL +
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            Zoom in
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            <IMG alt="zoom out" src="images/zoomOut.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            CTRL -
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            Zoom out
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            <IMG alt="fit diagram" src="images/fitContent.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            CTRL F
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            Fit diagram to view
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            <IMG alt="print diagram" src="images/print.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            Print diagram
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            <IMG alt="print preview" src="images/printPreview.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            Show print preview
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            <IMG alt="close diagram" src="images/close.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            Close diagram and dispose all contents
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            <IMG alt="settings" src="images/settings.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+
+          </td>
+          <td style="BACKGROUND-COLOR: #e8e8e8">
+            Open UML diagram settings
+          </td>
+        </tr>
+        <tr>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            <IMG alt="help" src="images/help.png">
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+
+          </td>
+          <td style="BACKGROUND-COLOR: #c4c4c4">
+            Show plugin help
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </center>
+  <div>
+    The following picture shows the dialog for editing diagram creation steps:
+    <center>
+      <IMG style="MARGIN: 10px" alt="edit creation steps" src="images/Edit_Creation_Steps.png" align=middle>
+    </center>
+    Diagram creation steps can be rearranged by selecting one or more steps and moving steps with the <i>up</i>-
+    or <i>down</i>-button. Steps can be deleted by selecting one or more steps and pressing the <i>delete</i>-button.
+    If only one step is selected, the <i>crop</i>-button can be used to delete all steps below the selected step.
+    As long as the <i>preview</i>-checkbox is selected, all manipulations will be immedialtely visible in the diagram.
+  </div>
+  <div>
+    All diagrams will be saved to the <i>IDEA</i> project file when closing the current project and will be reloaded
+    as soon as the project is loaded.
+  </div>
+</div>
+
+<h2>Settings</h2>
+
+<div>
+  An additional settings dialog is reachable from the IDEA settings and from all new tool windows.
+  <center>
+    <IMG style="MARGIN: 10px" alt="settings" src="images/SettingsDialog_640.png" align=middle>
+  </center>
+  The colors of class nodes, abstract class nodes, interface nodes and enum
+  nodes can be adjusted as well as colors for normal, used, and extended classes
+  in class clouds. The minimum and maximum font size for class clouds can be selected.
+  The transition animation between two graphs can be switched on and off.
+  If the animation is enabled, the duration in milliseconds can be configured.
+  All (generic) interfaces and classes that should be handled as collections
+  (to detect one-to-many-associations) can be included in a list of collection classes.
+  The grid size used for UML diagram layout can be adjusted, too.
+  Highlighting cyclic dependencies between classes in the graphical navigator can be
+  switched on and off.
+</div>
+
+</body>
+</html>

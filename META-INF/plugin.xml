@@ -1,0 +1,907 @@
+<!DOCTYPE idea-plugin PUBLIC "Plugin/DTD" "http://plugins.intellij.net/plugin.dtd">
+<idea-plugin>
+  <name>Code Navigator</name>
+  <description>
+    <![CDATA[
+      <div>
+        Understanding other people's code or your own code in
+        complex systems is a challenging problem in software development. This
+        plugin supports developers in learning the dependencies and couplings
+        in object oriented systems.
+      </div>
+      <div>
+        Three major plugin-functions can be used:
+        <ul>
+          <li>class cloud diagram</li>
+          <li>graphical navigation between dependent classes</li>
+          <li>creation of UML diagrams</li>
+        </ul>
+        <div>
+          The class cloud diagram should be used as a first step when trying
+          to understand an object oriented system. It shows all project classes
+          in a single diagram as a cloud, very similar to tag clouds known from
+          web-applications. Some of the most important classes can such be found
+          by using the class cloud to be further investigated by using the
+          graphical navigator or the source code.
+        </div>
+        <div>
+          Graphical navigation can be used to find aCnd understand all
+          dependencies (using classes, used classes, extending classes and
+          extended classes of some subject class).
+        </div>
+        <div>
+          As soon as the developer has understood which classes interact in
+          which way, UML diagrams should be created that condense this knowledge.
+          Though it is really helpful to have at least some UML diagrams, many
+          software systems are not documented well or the existing diagrams are
+          totally outdated. This plugin helps to create static class diagrams that
+          always can be kept in sync with the current state of a system.
+        </div>
+        <div>
+          The new functions can be accessed by a new menu item in the Analyze menu
+          of the main menu bar (<i>Analyze Class Cloud</i>) and two new menu items
+          in the project view and editor popup menus (<i>Show in Graphical Navigator</i>
+          and <i>Add to UML Diagram</i>).
+        </div>
+      </div>
+    ]]>
+  </description>
+  <version>1.25</version>
+  <change-notes>
+    <![CDATA[
+    <div>
+      Version 1.25(_8):
+      <ul>
+        <li>
+          fixed: minor bug fixes.
+        </li>
+        <li>
+          added: many NotNull- and Nullable-checks to further improve stability.
+        </li>
+        <li>
+          added: Thumbnail generation for diagrams and graphs
+        </li>
+        <li>
+          added: Source code, generated javadoc and UML class diagrams
+        </li>
+      </ul>
+      Version 1.24(_8):
+      <ul>
+        <li>
+          added: search scope can be chosen for class cloud analysis.
+        </li>
+        <li>
+          added: UML diagrams can now be saved as graphml-files (to be opened and layouted with tools like yed,
+                 see <a href="http://www.yworks.com">www.yworks.com</a>).
+        </li>
+        <li>
+          changed: recompiled all classes with target 1.5, so plugin should be usable for Mac OS X users, too.
+        </li>
+      </ul>
+    <div>
+      Version 1.23(_8):
+      <ul>
+        <li>
+          added: undo in diagram creation step editor
+        </li>
+      </ul>
+      Version 1.22(_8):
+      <ul>
+        <li>
+          changed: class cloud and graphical navigator graphs are saved with same writer as used for UML diagrams
+                   so always a good image quality is achieved
+        </li>
+        <li>
+          added: class cloud diagrams, graphical navigator graphs and UML diagrams can now be saved as SVG
+                 files. These vector graphics files can be opened by tools like Inkscape (see
+                 <a href="http://www.inkscape.org/">www.inkscape.org</a>)
+        </li>
+      </ul>
+      Version 1.21:
+      <ul>
+        <li>
+          changed: if diagrams are saved to image files (JPG, PNG, GIF), the images will have a resolution
+                   that matches the diagrams size in world coordinates and thus are always readable
+        </li>
+        <li>
+          added: dialog to manually edit diagram creation steps for UML diagrams
+        </li>
+      </ul>
+      Version 1.20:
+      <ul>
+        <li>
+          added: class cloud diagram that shows all classes of complete project in a single diagram
+                 to find starting points for graphical navigations in order to understand dependencies.
+                 Works similar to tag clouds, but for classes.
+        </li>
+        <li>
+          added: class cloud tool window will be opened on demand after a class cloud is computed.
+                 If a user selects "Analyze Class Cloud" from the main analyze-menu, all dependencies
+                 between all classes will be analyzed and a new tool window will be opened.
+        </li>
+        <li>
+          added: navigation from class in class cloud to graphical navigator
+        </li>
+        <li>
+          added: tool tips in class cloud show fully qualified class name
+        </li>
+        <li>
+          added: navigation from class in class cloud to source code (class source will be shown in editor)
+        </li>
+        <li>
+          added: text input field in class cloud can be used to highlight macthing classes in class cloud
+        </li>
+        <li>
+          added: added reset view button to class cloud toolbar
+        </li>
+        <li>
+          changed: added new settings for class cloud and rearranged settings dialog
+        </li>
+        <li>
+          changed: no new layout will be computed automatically when removing classes from UML diagrams
+        </li>
+      </ul>
+      Version 1.17:
+      <ul>
+        <li>
+          changed: UML diagrams will now be updated for rename class/package and move class/package
+                   refactorings and for corresponding undo operations of rename and move refactorings
+        </li>
+      </ul>
+      Version 1.16:
+      <ul>
+        <li>
+          fixed: some minor bugs
+        </li>
+        <li>
+          changed: suggested diagram name for new UML diagrams is now based on selected classes
+        </li>
+      </ul>
+      Version 1.15:
+      <ul>
+        <li>
+          fixed: in some cases on slow machines, the graphical navigator did not repaint node labels
+                 at the end of an animation
+        </li>
+        <li>
+          fixed: graphical navigator did not always repaint properly on first opening tool window
+        </li>
+        <li>
+          added: new action "jump to graphical navigator" jumps directly to chosen class, shortcut is "ctrl alt shift G"
+        </li>
+        <li>
+          added: graphical navigator draws direct cyclic dependencies between classes in red. Can be disabled
+                 in settings dialog.
+        </li>
+        <li>
+          added: visibility of field and method compartments can be changed via node popup menu in UML diagrams.
+        </li>
+      </ul>
+      Version 1.14:
+      <ul>
+        <li>
+          fixed: saved diagrams could only be loaded explicitely, if at least one diagram existed
+        </li>
+        <li>
+          added: UML diagram node popup menu items for connecting nodes with more control
+        </li>
+        <li>
+          added: UML diagram edge popup menu items for removing multiple edges at once
+        </li>
+        <li>
+          changed: reorganized UML diagram node popup menu
+        </li>
+        <li>
+          added: if a package is added to a UML diagram, all contained classes are added instead
+        </li>
+        <li>
+          changed: if an openend diagram already exists, the user will be asked whether to replace, skip or
+                   rename the diagram instead of always renaming it
+        </li>
+        <li>
+          fixed: rename button in UML diagram tool window toolbar throwed exception, if no diagram existed
+        </li>
+        <li>
+          fixed: "add to new diagram" menu item throwed exception, if IDEA does not use JDK 6 (for example on Macs)
+        </li>
+        <li>
+          added: "add to new diagram" menu item and "show in graphical navigator" menu item are now also accessible
+                 from editor tab popup menu
+        </li>
+      </ul>
+      Version 1.13:
+      <ul>
+        <li>
+          changed: persistence of settings and diagrams now uses PersistentStateComponent instead of JDOMExternalizable
+        </li>
+        <li>
+          added: added access to settings dialog from graphical navigator and UML diagram tool windows
+        </li>
+        <li>
+          added: one or all diagrams can now be explicitely saved to diagram creation command sequence files as XML
+        </li>
+        <li>
+          added: diagrams can now be explicitely loaded from diagram creation command sequence files
+        </li>
+        <li>
+          added: class in current editor is shown in graphical navigator, if tool window is opened for the first time
+                 instead of showing an empty graphical navigator window
+        </li>
+        <li>
+          changed: classes in UML diagrams now show self references for fields
+        </li>
+      </ul>
+      Version 1.12:
+      <ul>
+        <li>
+          changed: icon handling refactored
+        </li>
+        <li>
+          added: Help Dialogs in Graphical Navigator tool window and UML Diagrams tool window
+        </li>
+      </ul>
+      Version 1.11:
+      <ul>
+        <li>
+          changed: multiple selected classes in project view can be added to UML diagrams with a single action
+        </li>
+        <li>
+          fixed: default colors for classes, interfaces, abstract classes and enums fixed
+        </li>
+      </ul>
+      Version 1.10:
+      <ul>
+        <li>
+          added: printing and print preview of graphical navigator
+        </li>
+        <li>
+          added: UML diagram generator
+        </li>
+      </ul>
+      Version 1.04:
+      <ul>
+        <li>
+          fixed: graph was not repainted when stepping back or forward in navigation history with animations turned off
+        </li>
+        <li>
+          changed: settings moved from project to application
+        </li>
+        <li>
+          changed: refactoring of action handling
+        </li>
+        <li>
+          added: export of current graph as image (PNG, GIF, JPEG)
+        </li>
+      </ul>
+      Version 1.03:
+      <ul>
+        <li>
+          added: buttons to zoom in, zoom out, fit contents
+        </li>
+        <li>
+          added: hand cursor on nodes and edges indicates possible clicks
+        </li>
+        <li>
+          added: tooltips on nodes show fully qualified class names
+        </li>
+        <li>
+          fixed: graph is immediately updated after class visibility (non-project classes or test classes) changes
+        </li>
+      </ul>
+      Version 1.02:
+      <ul>
+        <li>
+          fixed: non-project classes no longer show other non-project classes as used classes
+        </li>
+      </ul>
+      Version 1.01:
+      <ul>
+        <li>
+          added: setting "show non-project classes"
+        </li>
+        <li>
+          added: setting "show test classes"
+        </li>
+        <li>
+          fixed: classes that contained inner class, that use the subject class where added as using classes
+        </li>
+      </ul>
+    </div>
+    ]]>
+  </change-notes>
+  <vendor>Frank Gerberding</vendor>
+  <idea-version since-build="7590" until-build="7999"/>
+  <application-components>
+    <component>
+      <implementation-class>de.frag.umlplugin.settings.SettingsPlugin</implementation-class>
+    </component>
+  </application-components>
+  <project-components>
+    <component>
+      <implementation-class>de.frag.umlplugin.codenavigator.NavigatorProjectComponent</implementation-class>
+    </component>
+    <component>
+      <implementation-class>de.frag.umlplugin.uml.UMLDiagramComponent</implementation-class>
+    </component>
+  </project-components>
+  <!--
+  <extensions defaultExtensionNs="com.intellij">
+   <errorHandler implementation="de.frag.umlplugin.ErrorHandler"/>
+ </extensions>
+ -->
+  <actions>
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- ++++++++++++++++ class cloud actions ++++++++++++++++ -->
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <!-- analyze menu extension -->
+    <action id="codeNavigator.classCloud.openClassCloud"
+            class="de.frag.umlplugin.classcloud.actions.ClassCloudAction"
+            text="Analyze Class Cloud...">
+      <add-to-group group-id="AnalyzeMenu" anchor="last"/>
+    </action>
+
+    <!-- class cloud toolbar -->
+    <group id="codeNavigator.classCloud.classCloudToolBar">
+      <action id="codeNavigator.classCloud.refresh"
+              class="de.frag.umlplugin.classcloud.actions.ClassCloudAction"
+              text="Refresh Class Cloud"
+              description="Refresh class cloud be analyzing class dependencies"
+              icon="/de/frag/umlplugin/icons/refresh.png">
+      </action>
+      <action id="codeNavigator.classCloud.toggleHighlightingDependencies"
+              class="de.frag.umlplugin.classcloud.actions.HighlightDependenciesToggleAction"
+              text="Toggle between highlighting dependencies and navigating to source on node clicks"
+              description="Toggle between highlighting dependencies and navigating to source on node clicks"
+              icon="/de/frag/umlplugin/icons/editSource.png">
+      </action>
+      <action id="codeNavigator.classCloud.resetView"
+              class="de.frag.umlplugin.classcloud.actions.ResetViewAction"
+              text="Reset view"
+              description="Reset view so there are no ghosted classes"
+              icon="/de/frag/umlplugin/icons/reset.png">
+      </action>
+      <separator/>
+      <action id="codeNavigator.classCloud.zoomIn"
+              class="de.frag.umlplugin.actions.ZoomInAction"
+              text="Zoom in"
+              description="Zoom in"
+              icon="/de/frag/umlplugin/icons/zoomIn.png">
+        <keyboard-shortcut keymap="$default" first-keystroke="ctrl PLUS"/>
+      </action>
+      <action id="codeNavigator.classCloud.zoomOut"
+              class="de.frag.umlplugin.actions.ZoomOutAction"
+              text="Zoom out"
+              description="Zoom out"
+              icon="/de/frag/umlplugin/icons/zoomOut.png">
+        <keyboard-shortcut keymap="$default" first-keystroke="ctrl MINUS"/>
+      </action>
+      <action id="codeNavigator.classCloud.fitContent"
+              class="de.frag.umlplugin.actions.FitContentAction"
+              text="Fit content"
+              description="Fit diagram to view"
+              icon="/de/frag/umlplugin/icons/fitContent.png">
+        <keyboard-shortcut keymap="$default" first-keystroke="ctrl F"/>
+      </action>
+      <separator/>
+      <action id="codeNavigator.classCloud.exportToFile"
+              class="de.frag.umlplugin.actions.ExportGraphAction"
+              text="Export to file"
+              description="Export to image file"
+              icon="/de/frag/umlplugin/icons/export.png">
+      </action>
+      <action id="codeNavigator.classCloud.printGraph"
+              class="de.frag.umlplugin.actions.DirectPrintGraphAction"
+              text="Print graph"
+              description="Print diagram">
+      </action>
+      <action id="codeNavigator.classCloud.printPreview"
+              class="de.frag.umlplugin.actions.PrintPreviewGraphAction"
+              text="Print preview"
+              description="Print preview">
+      </action>
+      <separator/>
+      <action id="codeNavigator.classCloud.classCloudClose"
+              class="de.frag.umlplugin.classcloud.actions.ClassCloudCloseAction"
+              text="Close Class Cloud"
+              description="Close Class Cloud"
+              icon="/de/frag/umlplugin/icons/close.png">
+      </action>
+      <separator/>
+      <action id="codeNavigator.classCloud.graphicalNavigatorSettings"
+              class="de.frag.umlplugin.actions.SettingsAction"
+              text="Settings"
+              description="Show graphical navigator settings"
+              icon="/de/frag/umlplugin/icons/settings.png">
+      </action>
+      <action id="codeNavigator.classCloud.graphicalNavigatorHelp"
+              class="de.frag.umlplugin.actions.HelpAction"
+              text="Plugin Help"
+              description="Plugin Help"
+              icon="/de/frag/umlplugin/icons/help.png">
+      </action>
+    </group>
+
+    <!-- class cloud node popup menu -->
+    <group id="codeNavigator.classCloud.popupMenuGroup" popup="true">
+      <action id="codeNavigator.classCloud.showInGraphicalNavigator"
+              class="de.frag.umlplugin.codenavigator.actions.ShowInGraphicalNavigatorAction"
+              text="Show class in graphical navigator"
+              description="Show class in graphical navigator">
+      </action>
+      <action id="codeNavigator.classCloud.showInEditor"
+              class="de.frag.umlplugin.classcloud.actions.ShowInEditorAction"
+              text="Show class in editor"
+              description="Show class in editor">
+      </action>
+      <action id="codeNavigator.classCloud.highlightDependencies"
+              class="de.frag.umlplugin.classcloud.actions.HightlightDependenciesAction"
+              text="Show dependencies"
+              description="Show dependencies by highlighting all dependent classes">
+      </action>
+      <separator/>
+      <action id="codeNavigator.classCloud.refreshPopup"
+              class="de.frag.umlplugin.classcloud.actions.ClassCloudAction"
+              text="Refresh Class Cloud"
+              description="Refresh class cloud be analyzing class dependencies"
+              icon="/de/frag/umlplugin/icons/refresh.png">
+      </action>
+    </group>
+
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- +++++++ graphical navigator component actions +++++++ -->
+    <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <!-- editor and project popup menu extension -->
+    <action id="codeNavigator.showInGraphicalNavigator"
+            class="de.frag.umlplugin.codenavigator.actions.ShowInGraphicalNavigatorAction"
+            text="Show in Graphical Navigator"
+            description="Show selected elements in Graphical Navigator"
+            icon="/de/frag/umlplugin/icons/layout.png">
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift G"/>
+      <add-to-group group-id="EditorPopupMenu"      anchor="after" relative-to-action="FindUsages"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="after" relative-to-action="FindUsages"/>
+      <add-to-group group-id="EditorTabPopupMenu"   anchor="last"/>
+    </action>
+
+    <action id="codeNavigator.directJumpToGraphicalNavigator"
+            class="de.frag.umlplugin.codenavigator.actions.DirectJumpToGraphicalNavigatorAction"
+            text="Show class in Graphical Navigator"
+            description="Show class in Graphical Navigator">
+      <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt shift G"/>
+    </action>
+
+    <!-- graphical navigator toolbar -->
+    <group id="codeNavigator.graphicalNavigatorToolBar">
+      <action id="codeNavigator.navigationHistoryBack"
+              class="de.frag.umlplugin.codenavigator.actions.NavigationHistoryBackAction"
+              text="Navigate back in navigation history"
+              description="Navigate back in navigation history"
+              icon="/de/frag/umlplugin/icons/back.png">
+        <keyboard-shortcut keymap="$default" first-keystroke="ctrl LEFT"/>
+      </action>
+      <action id="codeNavigator.navigationHistoryForward"
+              class="de.frag.umlplugin.codenavigator.actions.NavigationHistoryForwardAction"
+              text="Show in Graphical Navigator"
+              description="Show selected element in Graphical Navigator"
+              icon="/de/frag/umlplugin/icons/forward.png">
+        <keyboard-shortcut keymap="$default" first-keystroke="ctrl RIGHT"/>
+      </action>
+      <separator/>
+      <action id="codeNavigator.zoomIn"
+              class="de.frag.umlplugin.actions.ZoomInAction"
+              text="Zoom in"
+              description="Zoom in"
+              icon="/de/frag/umlplugin/icons/zoomIn.png">
+        <keyboard-shortcut keymap="$default" first-keystroke="ctrl PLUS"/>
+      </action>
+      <action id="codeNavigator.zoomOut"
+              class="de.frag.umlplugin.actions.ZoomOutAction"
+              text="Zoom out"
+              description="Zoom out"
+              icon="/de/frag/umlplugin/icons/zoomOut.png">
+        <keyboard-shortcut keymap="$default" first-keystroke="ctrl MINUS"/>
+      </action>
+      <action id="codeNavigator.fitContent"
+              class="de.frag.umlplugin.actions.FitContentAction"
+              text="Fit content"
+              description="Fit diagram to view"
+              icon="/de/frag/umlplugin/icons/fitContent.png">
+        <keyboard-shortcut keymap="$default" first-keystroke="ctrl F"/>
+      </action>
+      <separator/>
+      <action id="codeNavigator.exportToFile"
+              class="de.frag.umlplugin.actions.ExportGraphAction"
+              text="Export to file"
+              description="Export to image file"
+              icon="/de/frag/umlplugin/icons/export.png">
+      </action>
+      <action id="codeNavigator.printGraph"
+              class="de.frag.umlplugin.actions.DirectPrintGraphAction"
+              text="Print graph"
+              description="Print diagram">
+      </action>
+      <action id="codeNavigator.printPreview"
+              class="de.frag.umlplugin.actions.PrintPreviewGraphAction"
+              text="Print preview"
+              description="Print preview">
+      </action>
+      <separator/>
+      <action id="codeNavigator.graphicalNavigatorSettings"
+              class="de.frag.umlplugin.actions.SettingsAction"
+              text="Settings"
+              description="Show graphical navigator settings"
+              icon="/de/frag/umlplugin/icons/settings.png">
+      </action>
+      <action id="codeNavigator.graphicalNavigatorHelp"
+              class="de.frag.umlplugin.actions.HelpAction"
+              text="Plugin Help"
+              description="Plugin Help"
+              icon="/de/frag/umlplugin/icons/help.png">
+      </action>
+    </group>
+
+    <!-- graphical navigator node popup menu -->
+    <group id="codeNavigator.graphicalNavigatorNodePopupMenuRoot" popup="true"/>
+    <group id="codeNavigator.graphicalNavigatorNodePopupMenu"
+           class="de.frag.umlplugin.uml.actions.AddToDiagramPopupMenuGroup"
+           text="Add to UML Diagram"
+           popup="true">
+      <add-to-group anchor="first" group-id="codeNavigator.graphicalNavigatorNodePopupMenuRoot"/>
+    </group>
+    <action id="codeNavigator.graphicalNavigatorAddToNewDiagram"
+            class="de.frag.umlplugin.uml.actions.AddToNewDiagramAction"
+            text="New Diagram..."
+            description="Add class(es) to new diagram...">
+    </action>
+    <action id="codeNavigator.graphicalNavigatorAddToExistingDiagram"
+            class="de.frag.umlplugin.uml.actions.AddToExistingDiagramAction"
+            text=""
+            description="">
+    </action>
+
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
+    <!-- +++++++ painless UML component actions +++++++ -->
+    <!-- ++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <!-- editor and project popup menu extension -->
+    <group id="codeNavigator.uml.addToDiagramGroup"
+           class="de.frag.umlplugin.uml.actions.AddToDiagramPopupMenuGroup"
+           text="Add to UML Diagram"
+           popup="true">
+      <add-to-group group-id="EditorPopupMenu"      anchor="after" relative-to-action="FindUsages"/>
+      <add-to-group group-id="ProjectViewPopupMenu" anchor="after" relative-to-action="FindUsages"/>
+      <add-to-group group-id="EditorTabPopupMenu"   anchor="last"/>
+    </group>
+    <action id="codeNavigator.uml.addToNewDiagram"
+            class="de.frag.umlplugin.uml.actions.AddToNewDiagramAction"
+            text="New Diagram..."
+            description="Add class(es) to new diagram...">
+    </action>
+    <action id="codeNavigator.uml.addToExistingDiagram"
+            class="de.frag.umlplugin.uml.actions.AddToExistingDiagramAction"
+            text="">
+    </action>
+
+    <!-- diagram toolbar -->
+    <group id="codeNavigator.uml.UMLDiagramToolBar">
+      <action id="codeNavigator.openDiagram"
+              class="de.frag.umlplugin.uml.actions.toolbar.OpenDiagramAction"
+              text="Open diagram"
+              description="Open persistent diagram"
+              icon="/de/frag/umlplugin/icons/open.png">
+      </action>
+      <action id="codeNavigator.uml.saveDiagram"
+              class="de.frag.umlplugin.uml.actions.toolbar.SaveDiagramAction"
+              text="Save diagram(s)"
+              description="Save one or more diagrams"
+              icon="/de/frag/umlplugin/icons/save.png">
+      </action>
+      <action id="codeNavigator.uml.renameDiagram"
+              class="de.frag.umlplugin.uml.actions.toolbar.RenameDiagramAction"
+              text="Rename current diagram"
+              description="Rename current diagram"
+              icon="/de/frag/umlplugin/icons/rename.png">
+      </action>
+      <separator/>
+      <action id="codeNavigator.uml.diagramBack"
+              class="de.frag.umlplugin.uml.actions.toolbar.DiagramBackAction"
+              text="Navigate back in diagram creation history"
+              description="Navigate back in diagram creation history"
+              icon="/de/frag/umlplugin/icons/back.png">
+        <keyboard-shortcut keymap="$default" first-keystroke="ctrl LEFT"/>
+      </action>
+      <action id="codeNavigator.uml.diagramForward"
+              class="de.frag.umlplugin.uml.actions.toolbar.DiagramForwardAction"
+              text="Navigate forward in diagram creation history"
+              description="Navigate forward in diagram creation history"
+              icon="/de/frag/umlplugin/icons/forward.png">
+        <keyboard-shortcut keymap="$default" first-keystroke="ctrl RIGHT"/>
+      </action>
+      <action id="codeNavigator.uml.diagramRefresh"
+              class="de.frag.umlplugin.uml.actions.toolbar.DiagramRefreshAction"
+              text="Refresh diagram"
+              description="Refresh diagram contents"
+              icon="/de/frag/umlplugin/icons/refresh.png">
+        <keyboard-shortcut keymap="$default" first-keystroke="ctrl R"/>
+      </action>
+      <action id="codeNavigator.uml.editCommands"
+              class="de.frag.umlplugin.uml.actions.toolbar.EditCommandsAction"
+              text="Edit commands"
+              description="Edit diagram creation command list"
+              icon="/de/frag/umlplugin/icons/quickList.png">
+      </action>
+      <separator/>
+      <action id="codeNavigator.uml.diagramZoomIn"
+              class="de.frag.umlplugin.actions.ZoomInAction"
+              text="Zoom in"
+              description="Zoom in"
+              icon="/de/frag/umlplugin/icons/zoomIn.png">
+        <keyboard-shortcut keymap="$default" first-keystroke="ctrl PLUS"/>
+      </action>
+      <action id="codeNavigator.uml.diagramZoomOut"
+              class="de.frag.umlplugin.actions.ZoomOutAction"
+              text="Zoom out"
+              description="Zoom out"
+              icon="/de/frag/umlplugin/icons/zoomOut.png">
+        <keyboard-shortcut keymap="$default" first-keystroke="ctrl MINUS"/>
+      </action>
+      <action id="codeNavigator.uml.diagramFitContent"
+              class="de.frag.umlplugin.actions.FitContentAction"
+              text="Fit content"
+              description="Fit diagram to view"
+              icon="/de/frag/umlplugin/icons/fitContent.png">
+        <keyboard-shortcut keymap="$default" first-keystroke="ctrl F"/>
+      </action>
+      <separator/>
+      <action id="codeNavigator.uml.umlDiagramPrintGraph"
+              class="de.frag.umlplugin.actions.DirectPrintGraphAction"
+              text="Print graph"
+              description="Print diagram">
+      </action>
+      <action id="codeNavigator.uml.umlDiagramPrintPreview"
+              class="de.frag.umlplugin.actions.PrintPreviewGraphAction"
+              text="Print preview"
+              description="Print preview">
+      </action>
+      <separator/>
+      <action id="codeNavigator.uml.diagramClose"
+              class="de.frag.umlplugin.uml.actions.toolbar.DiagramCloseAction"
+              text="Close diagram"
+              description="Close diagram"
+              icon="/de/frag/umlplugin/icons/close.png">
+      </action>
+      <separator/>
+      <action id="codeNavigator.uml.diagramSettings"
+              class="de.frag.umlplugin.actions.SettingsAction"
+              text="Settings"
+              description="Show diagram settings"
+              icon="/de/frag/umlplugin/icons/settings.png">
+      </action>
+      <action id="codeNavigator.uml.diagramHelp"
+              class="de.frag.umlplugin.actions.HelpAction"
+              text="Plugin Help"
+              description="Plugin Help"
+              icon="/de/frag/umlplugin/icons/help.png">
+      </action>
+    </group>
+
+    <!-- diagram node popup menu -->
+    <group id="codeNavigator.uml.UMLDiagramNodePopupMenu" popup="true"/>
+    <!-- sub menu for adding classes -->
+    <group text="Add classes"
+           description="Add classes with dependencies to current class"
+           popup="true">
+      <add-to-group anchor="first" group-id="codeNavigator.uml.UMLDiagramNodePopupMenu"/>
+      <action id="codeNavigator.uml.addDependendClassesToDiagram"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.AddDependentClassesAction"
+              text="with any dependencies"
+              description="Use all dependency types to add classes">
+      </action>
+      <action id="codeNavigator.uml.addUsingClassesToDiagram"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.AddUsingClassesAction"
+              text="that are using class"
+              description="Add only using classes"
+              icon="/de/frag/umlplugin/icons/using.png">
+      </action>
+      <action id="codeNavigator.uml.addUsedClassesToDiagram"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.AddUsedClassesAction"
+              text="that are used by class"
+              description="Add only used classes"
+              icon="/de/frag/umlplugin/icons/used.png">
+      </action>
+      <action id="codeNavigator.uml.addExtendingClassesToDiagram"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.AddExtendingClassesAction"
+              text="that are extending class"
+              description="Add only extending classes"
+              icon="/de/frag/umlplugin/icons/extending.png">
+      </action>
+      <action id="codeNavigator.uml.addExtendedClassesToDiagram"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.AddExtendedClassesAction"
+              text="that are extended by class"
+              description="Add only extended classes"
+              icon="/de/frag/umlplugin/icons/extended.png">
+      </action>
+      <action id="codeNavigator.uml.addFieldClassesToDiagram"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.AddFieldClassesAction"
+              text="using or used via fields"
+              description="Add classes using or used via fields"
+              icon="/de/frag/umlplugin/icons/field.png">
+      </action>
+    </group>
+    <!-- sub menu for connecting all classes -->
+    <group popup="true"
+           text="Connect all classes"
+           description="Connect all classes contained in diagram">
+      <add-to-group anchor="last" group-id="codeNavigator.uml.UMLDiagramNodePopupMenu"/>
+      <action id="codeNavigator.uml.connectClasses"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.ConnectClassesAction"
+              text="with any dependencies"
+              description="Connect classes with any dependencies">
+      </action>
+      <action id="codeNavigator.uml.connectClassesUsed"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.ConnectClassesUsedAction"
+              text="that use each other"
+              description="Connect classes that use each other"
+              icon="/de/frag/umlplugin/icons/used.png">
+      </action>
+      <action id="codeNavigator.uml.connectClassesExtended"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.ConnectClassesExtendedAction"
+              text="that extend each other"
+              description="Connect classes that extend each other"
+              icon="/de/frag/umlplugin/icons/extended.png">
+      </action>
+      <action id="codeNavigator.uml.connectClassesField"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.ConnectClassesFieldAction"
+              text="using or used via fields"
+              description="Add classes using or used via fields"
+              icon="/de/frag/umlplugin/icons/field.png">
+      </action>
+    </group>
+    <!-- sub menu for connecting single classes -->
+    <group popup="true"
+           text="Connect class to existing classes"
+           description="Connects class to all classes already contained in diagram">
+      <add-to-group anchor="last" group-id="codeNavigator.uml.UMLDiagramNodePopupMenu"/>
+      <action id="codeNavigator.uml.connectSingleClass"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.ConnectSingleClassAction"
+              text="with any dependencies"
+              description="Connect to classes with any dependencies">
+      </action>
+      <action id="codeNavigator.uml.connectSingleClassUsing"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.ConnectSingleClassUsingAction"
+              text="that are using class"
+              description="Connect to classes that are using current class"
+              icon="/de/frag/umlplugin/icons/using.png">
+      </action>
+      <action id="codeNavigator.uml.connectSingleClassUsed"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.ConnectSingleClassUsedAction"
+              text="that are used by class"
+              description="Connect classes that are used by current class"
+              icon="/de/frag/umlplugin/icons/used.png">
+      </action>
+      <action id="codeNavigator.uml.connectSingleClassExtending"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.ConnectSingleClassExtendingAction"
+              text="that are extending class"
+              description="Connect classes that are extending current class"
+              icon="/de/frag/umlplugin/icons/extending.png">
+      </action>
+      <action id="codeNavigator.uml.connectSingleClassExtended"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.ConnectSingleClassExtendedAction"
+              text="that are extended by class"
+              description="Connect classes that are extended by current class"
+              icon="/de/frag/umlplugin/icons/extended.png">
+      </action>
+      <action id="codeNavigator.uml.connectSingleClassesField"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.ConnectSingleClassFieldAction"
+              text="using or used via fields"
+              description="Add classes using or used via fields"
+              icon="/de/frag/umlplugin/icons/field.png">
+      </action>
+    </group>
+    <!-- toggle visibility of compartments for a single class -->
+    <group popup="false">
+      <add-to-group anchor="last" group-id="codeNavigator.uml.UMLDiagramNodePopupMenu"/>
+      <separator/>
+    </group>
+    <group text="Change visibility for current class"
+           description="Change compartment visibility for current class"
+           popup="true">
+      <add-to-group anchor="last" group-id="codeNavigator.uml.UMLDiagramNodePopupMenu"/>
+      <separator/>
+      <action id="codeNavigator.uml.toggleFields"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.ToggleFieldsAction"
+              text="Toggle Fields"
+              description="Toggle field compartment visibility for current class">
+      </action>
+      <action id="codeNavigator.uml.toggleMethods"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.ToggleMethodsAction"
+              text="Toggle Methods"
+              description="Toggle method compartment visibility for current class">
+      </action>
+      <action id="codeNavigator.uml.toggleFieldsAndMethods"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.ToggleFieldsAndMethodsAction"
+              text="Toggle Fields and Methods"
+              description="Toggle field and method compartment visibility for current class">
+      </action>
+      <action id="codeNavigator.uml.hideFieldsAndMethods"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.HideFieldsAndMethodsAction"
+              text="Hide Fields and Methods"
+              description="Hide field and method compartment visibility for current class">
+      </action>
+    </group>
+    <!-- toggle visibility of compartments for a all classes -->
+    <group text="Change visibility for all classes"
+           description="Change compartment visibility for all classes"
+           popup="true">
+      <add-to-group anchor="last" group-id="codeNavigator.uml.UMLDiagramNodePopupMenu"/>
+      <action id="codeNavigator.uml.toggleFieldsForAll"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.ToggleFieldsForAllClassesAction"
+              text="Toggle Fields"
+              description="Toggle field compartment visibility for all classes">
+      </action>
+      <action id="codeNavigator.uml.toggleMethodsForAll"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.ToggleMethodsForAllClassesAction"
+              text="Toggle Methods"
+              description="Toggle method compartment visibility for all classes">
+      </action>
+      <action id="codeNavigator.uml.toggleFieldsAndMethodsForAll"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.ToggleFieldsAndMethodsForAllClassesAction"
+              text="Toggle Fields and Methods"
+              description="Toggle field and method compartment visibility for all classes">
+      </action>
+      <action id="codeNavigator.uml.hideFieldsAndMethodsForAll"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.HideFieldsAndMethodsForAllClassesAction"
+              text="Hide Fields and Methods"
+              description="Hide field and method compartment visibility for all classes">
+      </action>
+    </group>
+    <!-- remaining actions -->
+    <group popup="false">
+      <add-to-group anchor="last" group-id="codeNavigator.uml.UMLDiagramNodePopupMenu"/>
+      <separator/>
+    </group>
+    <group popup="false">
+      <add-to-group anchor="last" group-id="codeNavigator.uml.UMLDiagramNodePopupMenu"/>
+      <action id="codeNavigator.uml.removeClassFromDiagram"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.RemoveClassAction"
+              text="Remove class"
+              description="Remove class"
+              icon="/de/frag/umlplugin/icons/remove.png">
+      </action>
+      <action id="codeNavigator.uml.diagramClear"
+              class="de.frag.umlplugin.uml.actions.nodepopupmenu.DiagramClearAction"
+              text="Clear diagram"
+              description="Clear diagram"
+              icon="/de/frag/umlplugin/icons/clear.png">
+      </action>
+      <separator/>
+      <action id="codeNavigator.uml.showDiagramClassInGraphicalNavigator"
+              class="de.frag.umlplugin.codenavigator.actions.ShowInGraphicalNavigatorAction"
+              text="Show class in graphical navigator"
+              description="Show class in graphical navigator">
+      </action>
+    </group>
+
+
+    <!-- diagram edge popup menu -->
+    <group id="codeNavigator.uml.UMLDiagramEdgePopupMenu" popup="true">
+      <action id="codeNavigator.uml.removeEdgeFromDiagram"
+              class="de.frag.umlplugin.uml.actions.edgepopupmenu.RemoveEdgeAction"
+              text="Remove dependency edge"
+              description="Remove dependency edge"
+              icon="/de/frag/umlplugin/icons/remove.png">
+      </action>
+      <action id="codeNavigator.uml.removeAllUsageEdgesFromDiagram"
+              class="de.frag.umlplugin.uml.actions.edgepopupmenu.RemoveAllUsageEdgesAction"
+              text="Remove all usage edges"
+              description="Remove all usage edges">
+      </action>
+      <action id="codeNavigator.uml.removeAllCreateEdgesFromDiagram"
+              class="de.frag.umlplugin.uml.actions.edgepopupmenu.RemoveAllCreateEdgesAction"
+              text="Remove all create edges"
+              description="Remove all create edges">
+      </action>
+    </group>
+  </actions>
+</idea-plugin>
