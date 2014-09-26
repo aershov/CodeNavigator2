@@ -60,7 +60,7 @@ public class SVGGraphWriter implements GraphWriter
         GraphManager graphManager = GraphManager.getGraphManager ();
         Graph2DView imageView = graphManager.createGraph2DView (graph);
         imageView.setAntialiasedPainting (true);
-        imageView.setSecureDrawingMode   (true);
+//        imageView.setSecureDrawingMode   (true); //TODO
         imageView.setBounds              (0, 0, width, height);
         imageView.setViewPoint           (x - border, y - border);
         imageView.paintVisibleContent    (graphics);

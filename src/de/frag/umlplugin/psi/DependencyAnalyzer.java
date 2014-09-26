@@ -165,7 +165,7 @@ public class DependencyAnalyzer
    */
   private void computeUsedClasses ()
   {
-    JavaElementVisitor visitor = new PsiRecursiveElementVisitor () {
+      JavaElementVisitor visitor = new JavaRecursiveElementVisitor() {
       private boolean belowField             = false;
       private boolean belowNew               = false;
       private boolean belowCollection        = false;
@@ -181,7 +181,7 @@ public class DependencyAnalyzer
         else
         {
           belowInnerClass = true;
-          super.visitClass (aClass);
+          super.visitClass(aClass);
           belowInnerClass = false;
         }
       }

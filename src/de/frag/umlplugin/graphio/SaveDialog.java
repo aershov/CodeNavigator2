@@ -91,7 +91,7 @@ public class SaveDialog
         }
       }
     });
-    dialogBuilder.setPreferedFocusComponent (fileNameField);
+    dialogBuilder.setPreferredFocusComponent(fileNameField);
   }
 
   /**

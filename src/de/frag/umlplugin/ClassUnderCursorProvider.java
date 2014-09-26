@@ -42,7 +42,7 @@ public class ClassUnderCursorProvider implements PsiClassProvider
         else if (psiElement instanceof PsiDirectory)
         {
           PsiDirectory psiDirectory = (PsiDirectory) psiElement;
-          PsiPackage psiPackage = psiDirectory.getPackage ();
+          PsiPackage psiPackage = JavaDirectoryService.getInstance().getPackage(psiDirectory);// psiDirectory.getPackage ();
           if (psiPackage != null)
           {
             PsiClass [] classes = psiPackage.getClasses ();

@@ -169,7 +169,13 @@ public class UMLRefactoringListenerProvider implements RefactoringElementListene
       return new DocumentReference [0];
     }
 
-    /**
+
+      public boolean isGlobal() {
+          return true; //TODO ?
+      }
+
+
+      /**
      * Always returns false since this is not used by this action.
      * @return false
      */

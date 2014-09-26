@@ -1,6 +1,6 @@
 package de.frag.umlplugin.psi;
 
-import com.intellij.codeInsight.TestUtil;
+//import com.intellij.codeInsight.TestUtil;
 import com.intellij.ide.DataManager;
 import com.intellij.openapi.actionSystem.DataKeys;
 import com.intellij.openapi.project.Project;
@@ -8,6 +8,7 @@ import com.intellij.openapi.roots.ProjectFileIndex;
 import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.*;
+import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.search.PsiSearchScopeUtil;
 import com.intellij.psi.search.SearchScope;
 import org.jetbrains.annotations.NotNull;
@@ -29,8 +30,10 @@ public class ClassFinder
    */
   public static @Nullable PsiClass findPsiClass (@NotNull Project project, @NotNull String qualifiedClassName)
   {
-    PsiManager psiManager = PsiManager.getInstance (project);
-    return psiManager.findClass (qualifiedClassName, project.getProjectScope ());
+//    PsiManager psiManager = PsiManager.getInstance(project);
+//    return psiManager.findClass (qualifiedClassName, project.getProjectScope ());
+      JavaPsiFacade psiFacade = JavaPsiFacade.getInstance(project);
+      return psiFacade.findClass(qualifiedClassName, GlobalSearchScope.projectScope(project));
   }
 
   /**
@@ -80,7 +83,8 @@ public class ClassFinder
   private static void addAllClasses (@NotNull PsiDirectory directory, @NotNull List<PsiClass> classes,
                                      @NotNull SearchScope searchScope)
   {
-    PsiPackage psiPackage = directory.getPackage ();
+
+    PsiPackage psiPackage = JavaDirectoryService.getInstance().getPackage(directory);// directory.getPackage ();
     if (psiPackage != null)
     {
       PsiClass [] containedClasses = psiPackage.getClasses ();
@@ -146,9 +150,9 @@ public class ClassFinder
     ProjectRootManager projectRootManager = ProjectRootManager.getInstance (project);
     ProjectFileIndex projectFileIndex = projectRootManager.getFileIndex ();
     boolean inTestSourceContent = projectFileIndex.isInTestSourceContent (virtualFile);
-    boolean testClass = TestUtil.isTestClass (psiClass);
+//    boolean testClass = TestUtil.isTestClass (psiClass);
     //System.out.println (psiClass + " is in test source: " + inTestSourceContent + ", is test class: " + testClass);
-    return inTestSourceContent || testClass;
+    return inTestSourceContent;// || testClass;
   }
 
   /**

@@ -11,12 +11,13 @@ import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowAnchor;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.openapi.wm.ToolWindowType;
-import com.intellij.peer.PeerFactory;
+//import com.intellij.peer.PeerFactory;
 import com.intellij.psi.PsiClass;
 import com.intellij.ui.DocumentAdapter;
 import com.intellij.ui.SearchTextField;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
+import com.intellij.ui.content.ContentFactoryImpl;
 import de.frag.umlplugin.*;
 import de.frag.umlplugin.classcloud.actions.ActionNames;
 import de.frag.umlplugin.codenavigator.graph.DependencyType;
@@ -283,7 +284,7 @@ public class ClassCloud
       cloudContentPanel.add (createToolBarPanel (), BorderLayout.NORTH);
       cloudContentPanel.add (graphViewContainer,    BorderLayout.CENTER);
 
-      ContentFactory contentFactory = PeerFactory.getInstance ().getContentFactory ();
+      ContentFactory contentFactory = new ContentFactoryImpl();//.getInstance().getContentFactory ();
       Content cloudContent = contentFactory.createContent (cloudContentPanel, "", false);
       cloudToolWindow.getContentManager ().addContent (cloudContent);
     }

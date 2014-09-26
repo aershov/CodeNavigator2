@@ -14,7 +14,7 @@ import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowAnchor;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.openapi.wm.ToolWindowType;
-import com.intellij.peer.PeerFactory;
+//import com.intellij.peer.PeerFactory;
 import com.intellij.refactoring.listeners.RefactoringListenerManager;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentFactory;
@@ -87,7 +87,8 @@ public class UMLDiagramComponent implements ProjectComponent, PersistentStateCom
     contentPanel.add (umlDiagrams,  BorderLayout.CENTER);
 
     ToolWindow toolWindow = toolWindowManager.registerToolWindow (TOOL_WINDOW_ID, false, ToolWindowAnchor.RIGHT);
-    ContentFactory contentFactory = PeerFactory.getInstance ().getContentFactory ();
+//    ContentFactory contentFactory = PeerFactory.getInstance ().getContentFactory ();
+    ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
     Content content = contentFactory.createContent (contentPanel, CONTENT_DISPLAY_NAME, false);
     toolWindow.getContentManager ().addContent (content);
     toolWindow.setType (ToolWindowType.SLIDING, null);

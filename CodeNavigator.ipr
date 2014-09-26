@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project relativePaths="false" version="4">
-  <component name="AntConfiguration">
-    <defaultAnt bundledAnt="true" />
-  </component>
+<project version="4">
   <component name="BuildJarProjectSettings">
     <option name="BUILD_JARS_ON_MAKE" value="false" />
   </component>
@@ -16,7 +13,6 @@
   </component>
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="Javac" />
-    <option name="DEPLOY_AFTER_MAKE" value="2" />
     <resourceExtensions>
       <entry name=".+\.(properties|xml|html|dtd|tld)" />
       <entry name=".+\.(gif|png|jpeg|jpg)" />
@@ -41,20 +37,373 @@
       <entry name="?*.jpeg" />
       <entry name="?*.jpg" />
     </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="false">
+        <processorPath useClasspath="true" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="CopyrightManager" default="" />
+  <component name="DBNavigator.Project.ConnectionManager">
+    <connections />
+  </component>
+  <component name="DBNavigator.Project.DataEditorManager">
+    <record-view-column-sorting-type value="BY_INDEX" />
+    <value-preview-text-wrapping value="false" />
+    <value-preview-pinned value="false" />
+  </component>
+  <component name="DBNavigator.Project.DataExportManager">
+    <export-instructions>
+      <create-header value="true" />
+      <quote-values-containing-separator value="true" />
+      <quote-all-values value="false" />
+      <value-separator value="" />
+      <file-name value="" />
+      <file-location value="" />
+      <scope value="GLOBAL" />
+      <destination value="FILE" />
+      <format value="EXCEL" />
+    </export-instructions>
+  </component>
+  <component name="DBNavigator.Project.DatabaseBrowserManager">
+    <autoscroll-to-editor value="false" />
+    <autoscroll-from-editor value="true" />
+    <show-object-properties value="true" />
+  </component>
+  <component name="DBNavigator.Project.MethodExecutionManager">
+    <group-history-entries value="false" />
+    <method-browser />
+    <execution-inputs />
+  </component>
+  <component name="DBNavigator.Project.Settings">
+    <general-settings>
+      <regional-settings>
+        <date-format value="MEDIUM" />
+        <number-format value="UNGROUPED" />
+        <locale value="SYSTEM_DEFAULT" />
+        <use-custom-formats value="false" />
+      </regional-settings>
+      <environment>
+        <environment-types>
+          <environment-type id="development" name="Development" description="Development environment" color="-2430209/-12296320" />
+          <environment-type id="integration" name="Integration" description="Integration environment" color="-2621494/-12163514" />
+          <environment-type id="production" name="Production" description="Productive environment" color="-11574/-10271420" />
+          <environment-type id="other" name="Other" description="" color="-1576/-10724543" />
+        </environment-types>
+        <visibility-settings>
+          <connection-tabs value="true" />
+          <dialog-headers value="true" />
+          <object-editor-tabs value="true" />
+          <script-editor-tabs value="false" />
+          <execution-result-tabs value="true" />
+        </visibility-settings>
+      </environment>
+    </general-settings>
+    <browser-settings>
+      <general>
+        <display-mode value="TABBED" />
+        <navigation-history-size value="100" />
+        <show-object-details value="false" />
+      </general>
+      <filters>
+        <object-type-filter>
+          <object-type name="SCHEMA" enabled="true" />
+          <object-type name="USER" enabled="true" />
+          <object-type name="ROLE" enabled="true" />
+          <object-type name="PRIVILEGE" enabled="true" />
+          <object-type name="CHARSET" enabled="true" />
+          <object-type name="TABLE" enabled="true" />
+          <object-type name="VIEW" enabled="true" />
+          <object-type name="MATERIALIZED VIEW" enabled="true" />
+          <object-type name="NESTED TABLE" enabled="true" />
+          <object-type name="COLUMN" enabled="true" />
+          <object-type name="INDEX" enabled="true" />
+          <object-type name="CONSTRAINT" enabled="true" />
+          <object-type name="TRIGGER" enabled="true" />
+          <object-type name="SYNONYM" enabled="true" />
+          <object-type name="SEQUENCE" enabled="true" />
+          <object-type name="PROCEDURE" enabled="true" />
+          <object-type name="FUNCTION" enabled="true" />
+          <object-type name="PACKAGE" enabled="true" />
+          <object-type name="TYPE" enabled="true" />
+          <object-type name="TYPE ATTRIBUTE" enabled="true" />
+          <object-type name="ARGUMENT" enabled="true" />
+          <object-type name="DIMENSION" enabled="true" />
+          <object-type name="CLUSTER" enabled="true" />
+          <object-type name="DBLINK" enabled="true" />
+        </object-type-filter>
+      </filters>
+    </browser-settings>
+    <navigation-settings>
+      <lookup-filters>
+        <lookup-objects>
+          <object-type name="SCHEMA" enabled="true" />
+          <object-type name="USER" enabled="false" />
+          <object-type name="ROLE" enabled="false" />
+          <object-type name="PRIVILEGE" enabled="false" />
+          <object-type name="CHARSET" enabled="false" />
+          <object-type name="TABLE" enabled="true" />
+          <object-type name="VIEW" enabled="true" />
+          <object-type name="MATERIALIZED VIEW" enabled="true" />
+          <object-type name="NESTED TABLE" enabled="false" />
+          <object-type name="COLUMN" enabled="false" />
+          <object-type name="INDEX" enabled="true" />
+          <object-type name="CONSTRAINT" enabled="true" />
+          <object-type name="TRIGGER" enabled="true" />
+          <object-type name="SYNONYM" enabled="false" />
+          <object-type name="SEQUENCE" enabled="true" />
+          <object-type name="PROCEDURE" enabled="true" />
+          <object-type name="FUNCTION" enabled="true" />
+          <object-type name="PACKAGE" enabled="true" />
+          <object-type name="TYPE" enabled="true" />
+          <object-type name="TYPE ATTRIBUTE" enabled="false" />
+          <object-type name="ARGUMENT" enabled="false" />
+          <object-type name="DIMENSION" enabled="false" />
+          <object-type name="CLUSTER" enabled="false" />
+          <object-type name="DBLINK" enabled="true" />
+        </lookup-objects>
+        <force-database-load value="false" />
+        <prompt-connection-selection value="true" />
+        <prompt-schema-selection value="true" />
+      </lookup-filters>
+    </navigation-settings>
+    <dataset-editor-settings>
+      <text-editor-popup>
+        <active value="false" />
+        <active-if-empty value="false" />
+        <data-length-threshold value="100" />
+        <popup-delay value="1000" />
+      </text-editor-popup>
+      <values-list-popup>
+        <active-for-primary-keys value="false" />
+        <element-count-threshold value="1000" />
+        <data-length-threshold value="250" />
+      </values-list-popup>
+      <general>
+        <fetch-block-size value="100" />
+        <fetch-timeout value="30" />
+        <trim-whitespaces value="true" />
+        <convert-empty-strings-to-null value="true" />
+        <select-content-on-cell-edit value="true" />
+        <large-value-preview-active value="true" />
+      </general>
+      <filters>
+        <prompt-filter-dialog value="true" />
+        <default-filter-type value="BASIC" />
+      </filters>
+      <qualified-text-editor text-length-threshold="300">
+        <content-types>
+          <content-type name="Text" enabled="true" />
+          <content-type name="Properties" enabled="true" />
+          <content-type name="XML" enabled="true" />
+          <content-type name="DTD" enabled="true" />
+          <content-type name="HTML" enabled="true" />
+          <content-type name="XHTML" enabled="true" />
+          <content-type name="CSS" enabled="true" />
+          <content-type name="Java" enabled="true" />
+          <content-type name="SQL" enabled="true" />
+          <content-type name="PL/SQL" enabled="true" />
+          <content-type name="JPA QL" enabled="true" />
+          <content-type name="JavaScript" enabled="true" />
+          <content-type name="JSP" enabled="true" />
+          <content-type name="JSPx" enabled="true" />
+          <content-type name="Groovy" enabled="true" />
+          <content-type name="FTL" enabled="true" />
+          <content-type name="VTL" enabled="true" />
+          <content-type name="YAML" enabled="true" />
+          <content-type name="Bash" enabled="true" />
+          <content-type name="Manifest" enabled="true" />
+        </content-types>
+      </qualified-text-editor>
+      <record-navigation>
+        <navigation-target value="VIEWER" />
+      </record-navigation>
+    </dataset-editor-settings>
+    <code-completion-settings>
+      <filters>
+        <basic-filter>
+          <filter-element type="RESERVED_WORD" id="keyword" selected="true" />
+          <filter-element type="RESERVED_WORD" id="function" selected="false" />
+          <filter-element type="RESERVED_WORD" id="parameter" selected="false" />
+          <filter-element type="RESERVED_WORD" id="datatype" selected="true" />
+          <filter-element type="OBJECT" id="schema" selected="true" />
+          <filter-element type="OBJECT" id="user" selected="true" />
+          <user-schema>
+            <filter-element type="OBJECT" id="table" selected="true" />
+            <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="materialized view" selected="true" />
+            <filter-element type="OBJECT" id="index" selected="true" />
+            <filter-element type="OBJECT" id="constraint" selected="true" />
+            <filter-element type="OBJECT" id="trigger" selected="true" />
+            <filter-element type="OBJECT" id="synonym" selected="false" />
+            <filter-element type="OBJECT" id="sequence" selected="true" />
+            <filter-element type="OBJECT" id="procedure" selected="true" />
+            <filter-element type="OBJECT" id="function" selected="true" />
+            <filter-element type="OBJECT" id="package" selected="true" />
+            <filter-element type="OBJECT" id="type" selected="true" />
+            <filter-element type="OBJECT" id="dimension" selected="true" />
+            <filter-element type="OBJECT" id="cluster" selected="true" />
+            <filter-element type="OBJECT" id="dblink" selected="true" />
+          </user-schema>
+          <public-schema>
+            <filter-element type="OBJECT" id="table" selected="false" />
+            <filter-element type="OBJECT" id="view" selected="false" />
+            <filter-element type="OBJECT" id="materialized view" selected="false" />
+            <filter-element type="OBJECT" id="index" selected="false" />
+            <filter-element type="OBJECT" id="constraint" selected="false" />
+            <filter-element type="OBJECT" id="trigger" selected="false" />
+            <filter-element type="OBJECT" id="synonym" selected="false" />
+            <filter-element type="OBJECT" id="sequence" selected="false" />
+            <filter-element type="OBJECT" id="procedure" selected="false" />
+            <filter-element type="OBJECT" id="function" selected="false" />
+            <filter-element type="OBJECT" id="package" selected="false" />
+            <filter-element type="OBJECT" id="type" selected="false" />
+            <filter-element type="OBJECT" id="dimension" selected="false" />
+            <filter-element type="OBJECT" id="cluster" selected="false" />
+            <filter-element type="OBJECT" id="dblink" selected="false" />
+          </public-schema>
+          <any-schema>
+            <filter-element type="OBJECT" id="table" selected="true" />
+            <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="materialized view" selected="true" />
+            <filter-element type="OBJECT" id="index" selected="true" />
+            <filter-element type="OBJECT" id="constraint" selected="true" />
+            <filter-element type="OBJECT" id="trigger" selected="true" />
+            <filter-element type="OBJECT" id="synonym" selected="true" />
+            <filter-element type="OBJECT" id="sequence" selected="true" />
+            <filter-element type="OBJECT" id="procedure" selected="true" />
+            <filter-element type="OBJECT" id="function" selected="true" />
+            <filter-element type="OBJECT" id="package" selected="true" />
+            <filter-element type="OBJECT" id="type" selected="true" />
+            <filter-element type="OBJECT" id="dimension" selected="true" />
+            <filter-element type="OBJECT" id="cluster" selected="true" />
+            <filter-element type="OBJECT" id="dblink" selected="true" />
+          </any-schema>
+        </basic-filter>
+        <extended-filter>
+          <filter-element type="RESERVED_WORD" id="keyword" selected="true" />
+          <filter-element type="RESERVED_WORD" id="function" selected="true" />
+          <filter-element type="RESERVED_WORD" id="parameter" selected="true" />
+          <filter-element type="RESERVED_WORD" id="datatype" selected="true" />
+          <filter-element type="OBJECT" id="schema" selected="true" />
+          <filter-element type="OBJECT" id="user" selected="true" />
+          <user-schema>
+            <filter-element type="OBJECT" id="table" selected="true" />
+            <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="materialized view" selected="true" />
+            <filter-element type="OBJECT" id="index" selected="true" />
+            <filter-element type="OBJECT" id="constraint" selected="true" />
+            <filter-element type="OBJECT" id="trigger" selected="true" />
+            <filter-element type="OBJECT" id="synonym" selected="true" />
+            <filter-element type="OBJECT" id="sequence" selected="true" />
+            <filter-element type="OBJECT" id="procedure" selected="true" />
+            <filter-element type="OBJECT" id="function" selected="true" />
+            <filter-element type="OBJECT" id="package" selected="true" />
+            <filter-element type="OBJECT" id="type" selected="true" />
+            <filter-element type="OBJECT" id="dimension" selected="true" />
+            <filter-element type="OBJECT" id="cluster" selected="true" />
+            <filter-element type="OBJECT" id="dblink" selected="true" />
+          </user-schema>
+          <public-schema>
+            <filter-element type="OBJECT" id="table" selected="true" />
+            <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="materialized view" selected="true" />
+            <filter-element type="OBJECT" id="index" selected="true" />
+            <filter-element type="OBJECT" id="constraint" selected="true" />
+            <filter-element type="OBJECT" id="trigger" selected="true" />
+            <filter-element type="OBJECT" id="synonym" selected="true" />
+            <filter-element type="OBJECT" id="sequence" selected="true" />
+            <filter-element type="OBJECT" id="procedure" selected="true" />
+            <filter-element type="OBJECT" id="function" selected="true" />
+            <filter-element type="OBJECT" id="package" selected="true" />
+            <filter-element type="OBJECT" id="type" selected="true" />
+            <filter-element type="OBJECT" id="dimension" selected="true" />
+            <filter-element type="OBJECT" id="cluster" selected="true" />
+            <filter-element type="OBJECT" id="dblink" selected="true" />
+          </public-schema>
+          <any-schema>
+            <filter-element type="OBJECT" id="table" selected="true" />
+            <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="materialized view" selected="true" />
+            <filter-element type="OBJECT" id="index" selected="true" />
+            <filter-element type="OBJECT" id="constraint" selected="true" />
+            <filter-element type="OBJECT" id="trigger" selected="true" />
+            <filter-element type="OBJECT" id="synonym" selected="true" />
+            <filter-element type="OBJECT" id="sequence" selected="true" />
+            <filter-element type="OBJECT" id="procedure" selected="true" />
+            <filter-element type="OBJECT" id="function" selected="true" />
+            <filter-element type="OBJECT" id="package" selected="true" />
+            <filter-element type="OBJECT" id="type" selected="true" />
+            <filter-element type="OBJECT" id="dimension" selected="true" />
+            <filter-element type="OBJECT" id="cluster" selected="true" />
+            <filter-element type="OBJECT" id="dblink" selected="true" />
+          </any-schema>
+        </extended-filter>
+      </filters>
+      <sorting enabled="true">
+        <sorting-element type="RESERVED_WORD" id="keyword" />
+        <sorting-element type="RESERVED_WORD" id="datatype" />
+        <sorting-element type="OBJECT" id="column" />
+        <sorting-element type="OBJECT" id="table" />
+        <sorting-element type="OBJECT" id="view" />
+        <sorting-element type="OBJECT" id="materialized view" />
+        <sorting-element type="OBJECT" id="index" />
+        <sorting-element type="OBJECT" id="constraint" />
+        <sorting-element type="OBJECT" id="trigger" />
+        <sorting-element type="OBJECT" id="synonym" />
+        <sorting-element type="OBJECT" id="sequence" />
+        <sorting-element type="OBJECT" id="procedure" />
+        <sorting-element type="OBJECT" id="function" />
+        <sorting-element type="OBJECT" id="package" />
+        <sorting-element type="OBJECT" id="type" />
+        <sorting-element type="OBJECT" id="dimension" />
+        <sorting-element type="OBJECT" id="cluster" />
+        <sorting-element type="OBJECT" id="dblink" />
+        <sorting-element type="OBJECT" id="schema" />
+        <sorting-element type="RESERVED_WORD" id="function" />
+        <sorting-element type="RESERVED_WORD" id="parameter" />
+      </sorting>
+    </code-completion-settings>
+    <execution-engine-settings>
+      <statement-execution>
+        <fetch-block-size value="100" />
+        <execution-timeout value="20" />
+        <focus-result value="false" />
+      </statement-execution>
+      <compiler>
+        <compile-type value="KEEP" />
+        <always-show-controls value="false" />
+      </compiler>
+    </execution-engine-settings>
+    <ddl-file-settings>
+      <extensions>
+        <mapping file-type-id="VIEW" extensions="vw" />
+        <mapping file-type-id="TRIGGER" extensions="trg" />
+        <mapping file-type-id="PROCEDURE" extensions="prc" />
+        <mapping file-type-id="FUNCTION" extensions="fnc" />
+        <mapping file-type-id="PACKAGE" extensions="pkg" />
+        <mapping file-type-id="PACKAGE_SPEC" extensions="pks" />
+        <mapping file-type-id="PACKAGE_BODY" extensions="pkb" />
+        <mapping file-type-id="TYPE" extensions="tpe" />
+        <mapping file-type-id="TYPE_SPEC" extensions="tps" />
+        <mapping file-type-id="TYPE_BODY" extensions="tpb" />
+      </extensions>
+      <general>
+        <statement-postfix value="/" />
+        <lookup-ddl-files value="true" />
+        <create-ddl-files value="false" />
+      </general>
+    </ddl-file-settings>
   </component>
   <component name="DependenciesAnalyzeManager">
     <option name="myForwardDirection" value="false" />
   </component>
   <component name="DependencyValidationManager">
-    <option name="SKIP_IMPORT_STATEMENTS" value="false" />
     <scope name="Code" pattern="de..*||help..*" />
+    <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
   <component name="EclipseCompilerSettings">
-    <option name="DEBUGGING_INFO" value="true" />
     <option name="GENERATE_NO_WARNINGS" value="true" />
-    <option name="DEPRECATION" value="true" />
-    <option name="ADDITIONAL_OPTIONS_STRING" value="" />
-    <option name="MAXIMUM_HEAP_SIZE" value="128" />
   </component>
   <component name="EclipseEmbeddedCompilerSettings">
     <option name="DEBUGGING_INFO" value="true" />
@@ -83,25 +432,20 @@
   </component>
   <component name="IdProvider" IDEtalkID="73245031FB2616772A24A3256B824E62" />
   <component name="InspectionProjectProfileManager">
-    <option name="PROJECT_PROFILE" value="Project Default" />
-    <option name="USE_PROJECT_LEVEL_SETTINGS" value="false" />
-    <scopes />
     <profiles>
       <profile version="1.0" is_locked="false">
         <option name="myName" value="Project Default" />
         <option name="myLocal" value="false" />
-        <inspection_tool class="UnusedMessageFormatParameter" level="WARNING" enabled="false" />
-        <inspection_tool class="Deprecation" level="WARNING" enabled="false" />
+        <inspection_tool class="Deprecation" enabled="false" level="WARNING" enabled_by_default="false" />
+        <inspection_tool class="UnusedMessageFormatParameter" enabled="false" level="WARNING" enabled_by_default="false" />
       </profile>
     </profiles>
-    <list size="0" />
+    <option name="PROJECT_PROFILE" value="Project Default" />
+    <option name="USE_PROJECT_PROFILE" value="true" />
+    <version value="1.0" />
   </component>
   <component name="JavacSettings">
-    <option name="DEBUGGING_INFO" value="true" />
-    <option name="GENERATE_NO_WARNINGS" value="false" />
-    <option name="DEPRECATION" value="true" />
-    <option name="ADDITIONAL_OPTIONS_STRING" value="-target 1.5 -Xlint:unchecked" />
-    <option name="MAXIMUM_HEAP_SIZE" value="128" />
+    <option name="ADDITIONAL_OPTIONS_STRING" value=" -Xlint:unchecked" />
   </component>
   <component name="JavadocGenerationManager">
     <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/docs" />
@@ -252,13 +596,12 @@
   <component name="ProjectDetails">
     <option name="projectName" value="CodeNavigator" />
   </component>
-  <component name="ProjectFileVersion" converted="true" />
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CodeNavigator.iml" filepath="$PROJECT_DIR$/CodeNavigator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CodeNavigator2.iml" filepath="$PROJECT_DIR$/CodeNavigator2.iml" />
     </modules>
   </component>
-  <component name="ProjectRootManager" version="2" assert-keyword="true" jdk-15="true" project-jdk-name="IDEA 7941" project-jdk-type="IDEA JDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="IDEA IU-123.72-java7" project-jdk-type="IDEA JDK">
     <output url="file://$PROJECT_DIR$/classes" />
   </component>
   <component name="ResourceManagerContainer">
@@ -556,54 +899,54 @@
       <compartment-visibility>
         <show-fields class="de.frag.umlplugin.uml.command.AddFieldClassesCommand" />
         <show-fields class="de.frag.umlplugin.uml.command.AbstractConnectCommand" />
-        <show-fields class="de.frag.umlplugin.uml.command.ConnectSingleClassUsedCommand" />
-        <show-fields class="de.frag.umlplugin.uml.command.ConnectClassesExtendedCommand" />
-        <show-fields class="de.frag.umlplugin.uml.command.ConnectSingleClassUsingCommand" />
-        <show-fields class="de.frag.umlplugin.uml.command.RemoveClassCommand" />
-        <show-fields class="de.frag.umlplugin.uml.command.AddUsedClassesCommand" />
-        <show-fields class="de.frag.umlplugin.uml.command.AddDependentClassesCommand" />
-        <show-fields class="de.frag.umlplugin.uml.command.AddUsingClassesCommand" />
-        <show-fields class="de.frag.umlplugin.uml.command.ConnectClassesFieldCommand" />
-        <show-fields class="de.frag.umlplugin.uml.command.DiagramCommandFactory" />
-        <show-fields class="de.frag.umlplugin.uml.command.AddExtendingClassesCommand" />
-        <show-fields class="de.frag.umlplugin.uml.command.ConnectSingleClassExtendedCommand" />
         <show-fields class="de.frag.umlplugin.uml.command.AbstractAddDependentClassesCommand" />
         <show-fields class="de.frag.umlplugin.uml.command.ConnectSingleClassFieldCommand" />
+        <show-fields class="de.frag.umlplugin.uml.command.ConnectSingleClassUsedCommand" />
+        <show-fields class="de.frag.umlplugin.uml.command.ConnectClassesExtendedCommand" />
         <show-fields class="de.frag.umlplugin.uml.command.ConnectSingleClassCommand" />
+        <show-fields class="de.frag.umlplugin.uml.command.ConnectSingleClassUsingCommand" />
         <show-fields class="de.frag.umlplugin.uml.command.AddExtendedClassesCommand" />
+        <show-fields class="de.frag.umlplugin.uml.command.RemoveClassCommand" />
         <show-fields class="de.frag.umlplugin.uml.command.AddClassCommand" />
         <show-fields class="de.frag.umlplugin.uml.command.ConnectClassesCommand" />
+        <show-fields class="de.frag.umlplugin.uml.command.AddUsedClassesCommand" />
+        <show-fields class="de.frag.umlplugin.uml.command.AddDependentClassesCommand" />
+        <show-fields class="de.frag.umlplugin.uml.command.ConnectClassesFieldCommand" />
+        <show-fields class="de.frag.umlplugin.uml.command.AddUsingClassesCommand" />
         <show-fields class="de.frag.umlplugin.uml.command.AbstractDiagramCommand" />
         <show-fields class="de.frag.umlplugin.uml.command.ConnectSingleClassExtendingCommand" />
         <show-fields class="de.frag.umlplugin.uml.command.RemoveEdgeCommand" />
         <show-fields class="de.frag.umlplugin.uml.command.ConnectClassesUsedCommand" />
+        <show-fields class="de.frag.umlplugin.uml.command.DiagramCommandFactory" />
         <show-fields class="de.frag.umlplugin.uml.command.RemoveAllUsageEdgesCommand" />
+        <show-fields class="de.frag.umlplugin.uml.command.AddExtendingClassesCommand" />
+        <show-fields class="de.frag.umlplugin.uml.command.ConnectSingleClassExtendedCommand" />
         <show-fields class="de.frag.umlplugin.uml.command.DiagramCommand" />
         <show-fields class="de.frag.umlplugin.uml.command.RemoveAllCreateEdgesCommand" />
         <show-methods class="de.frag.umlplugin.uml.command.AddFieldClassesCommand" />
         <show-methods class="de.frag.umlplugin.uml.command.AbstractConnectCommand" />
-        <show-methods class="de.frag.umlplugin.uml.command.ConnectSingleClassUsedCommand" />
-        <show-methods class="de.frag.umlplugin.uml.command.ConnectClassesExtendedCommand" />
-        <show-methods class="de.frag.umlplugin.uml.command.ConnectSingleClassUsingCommand" />
-        <show-methods class="de.frag.umlplugin.uml.command.RemoveClassCommand" />
-        <show-methods class="de.frag.umlplugin.uml.command.AddUsedClassesCommand" />
-        <show-methods class="de.frag.umlplugin.uml.command.AddDependentClassesCommand" />
-        <show-methods class="de.frag.umlplugin.uml.command.AddUsingClassesCommand" />
-        <show-methods class="de.frag.umlplugin.uml.command.ConnectClassesFieldCommand" />
-        <show-methods class="de.frag.umlplugin.uml.command.DiagramCommandFactory" />
-        <show-methods class="de.frag.umlplugin.uml.command.AddExtendingClassesCommand" />
-        <show-methods class="de.frag.umlplugin.uml.command.ConnectSingleClassExtendedCommand" />
         <show-methods class="de.frag.umlplugin.uml.command.AbstractAddDependentClassesCommand" />
         <show-methods class="de.frag.umlplugin.uml.command.ConnectSingleClassFieldCommand" />
+        <show-methods class="de.frag.umlplugin.uml.command.ConnectSingleClassUsedCommand" />
+        <show-methods class="de.frag.umlplugin.uml.command.ConnectClassesExtendedCommand" />
         <show-methods class="de.frag.umlplugin.uml.command.ConnectSingleClassCommand" />
+        <show-methods class="de.frag.umlplugin.uml.command.ConnectSingleClassUsingCommand" />
         <show-methods class="de.frag.umlplugin.uml.command.AddExtendedClassesCommand" />
+        <show-methods class="de.frag.umlplugin.uml.command.RemoveClassCommand" />
         <show-methods class="de.frag.umlplugin.uml.command.AddClassCommand" />
         <show-methods class="de.frag.umlplugin.uml.command.ConnectClassesCommand" />
+        <show-methods class="de.frag.umlplugin.uml.command.AddUsedClassesCommand" />
+        <show-methods class="de.frag.umlplugin.uml.command.AddDependentClassesCommand" />
+        <show-methods class="de.frag.umlplugin.uml.command.ConnectClassesFieldCommand" />
+        <show-methods class="de.frag.umlplugin.uml.command.AddUsingClassesCommand" />
         <show-methods class="de.frag.umlplugin.uml.command.AbstractDiagramCommand" />
         <show-methods class="de.frag.umlplugin.uml.command.ConnectSingleClassExtendingCommand" />
         <show-methods class="de.frag.umlplugin.uml.command.RemoveEdgeCommand" />
         <show-methods class="de.frag.umlplugin.uml.command.ConnectClassesUsedCommand" />
+        <show-methods class="de.frag.umlplugin.uml.command.DiagramCommandFactory" />
         <show-methods class="de.frag.umlplugin.uml.command.RemoveAllUsageEdgesCommand" />
+        <show-methods class="de.frag.umlplugin.uml.command.AddExtendingClassesCommand" />
+        <show-methods class="de.frag.umlplugin.uml.command.ConnectSingleClassExtendedCommand" />
         <show-methods class="de.frag.umlplugin.uml.command.DiagramCommand" />
         <show-methods class="de.frag.umlplugin.uml.command.RemoveAllCreateEdgesCommand" />
       </compartment-visibility>
@@ -775,7 +1118,7 @@
     </diagram>
   </component>
   <component name="VcsDirectoryMappings">
-    <mapping directory="" vcs="" />
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />
   <component name="com.sixrr.metrics.MetricsReloaded">

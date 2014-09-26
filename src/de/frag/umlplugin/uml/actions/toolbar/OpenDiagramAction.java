@@ -37,7 +37,8 @@ public class OpenDiagramAction extends AnAction
     if (diagrams != null && project != null)
     {
       FileChooserDescriptor descriptor = createDescriptor ();
-      VirtualFile [] files = FileChooser.chooseFiles (project, descriptor);
+//      VirtualFile [] files = FileChooser.chooseFiles(project, descriptor);
+      VirtualFile [] files = FileChooser.chooseFiles(descriptor, project, null);
       for (VirtualFile file : files)
       {
         loadDiagram (project, diagrams, file);
@@ -132,7 +133,7 @@ public class OpenDiagramAction extends AnAction
       }
     };
     descriptor.setDescription ("Both files containing single diagram and files containing multiple diagrams can be loaded.");
-    descriptor.setNewFileType (StdFileTypes.XML);
+//    descriptor.setNewFileType (StdFileTypes.XML);
     descriptor.setTitle ("Choose diagram file to open");
     return descriptor;
   }

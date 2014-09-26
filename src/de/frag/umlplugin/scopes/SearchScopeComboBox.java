@@ -1,6 +1,7 @@
 package de.frag.umlplugin.scopes;
 
 import com.intellij.ide.util.scopeChooser.EditScopesDialog;
+import com.intellij.ide.util.scopeChooser.ScopeChooserConfigurable;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.search.SearchScope;
 import com.intellij.psi.search.scope.packageSet.NamedScope;
@@ -28,7 +29,7 @@ public class SearchScopeComboBox extends ComboboxWithBrowseButton
     {
       public void actionPerformed (ActionEvent e)
       {
-        EditScopesDialog editScopesDialog = new EditScopesDialog (project, false);
+        EditScopesDialog editScopesDialog = new EditScopesDialog(project, new ScopeChooserConfigurable(project), false);
         editScopesDialog.show ();
         getComboBox ().setModel (createComboBoxModel (project));
         NamedScope selectedScope = editScopesDialog.getSelectedScope ();

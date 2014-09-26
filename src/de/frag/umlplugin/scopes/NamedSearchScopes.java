@@ -28,8 +28,8 @@ public class NamedSearchScopes
   {
     addScope (GlobalSearchScope.allScope (project));
     addScope (GlobalSearchScope.projectScope (project));
-    addScope (GlobalSearchScope.projectProductionScope (project, false));
-    addScope (GlobalSearchScope.projectTestScope (project, false));
+//    addScope (GlobalSearchScope.projectProductionScope (project, false)); //TODO
+//    addScope (GlobalSearchScope.projectTestScope (project, false)); //TODO
     addModuleScopes (project);
     addNamedScopes (project);
   }
@@ -52,7 +52,7 @@ public class NamedSearchScopes
     NamedScopeManager namedScopeManager = NamedScopeManager.getInstance (project);
     for (NamedScope namedScope : namedScopeManager.getScopes ())
     {
-      addScope (GlobalSearchScope.filterScope (project, namedScope));
+//      addScope (GlobalSearchScope.filterScope (project, namedScope));
     }
   }
 
