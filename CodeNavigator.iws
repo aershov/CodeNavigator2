@@ -19,24 +19,8 @@
     <option name="historyRevisionsNumber" value="4" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9979bbfc-d9a1-47b4-b910-ae9c99900be5" name="Default" comment=" IDEA 13 support">
-      <change type="MOVED" beforePath="C:\Users\a.ershov\Documents\GitHub\CodeNavigator2\CodeNavigator.iml" afterPath="$PROJECT_DIR$/CodeNavigator2.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/frag/umlplugin/classcloud/ClassCloud.java" afterPath="$PROJECT_DIR$/src/de/frag/umlplugin/classcloud/ClassCloud.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/frag/umlplugin/psi/ClassFinder.java" afterPath="$PROJECT_DIR$/src/de/frag/umlplugin/psi/ClassFinder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/frag/umlplugin/ClassUnderCursorProvider.java" afterPath="$PROJECT_DIR$/src/de/frag/umlplugin/ClassUnderCursorProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CodeNavigator.ipr" afterPath="$PROJECT_DIR$/CodeNavigator.ipr" />
+    <list default="true" id="9979bbfc-d9a1-47b4-b910-ae9c99900be5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CodeNavigator.iws" afterPath="$PROJECT_DIR$/CodeNavigator.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/frag/umlplugin/psi/DependencyAnalyzer.java" afterPath="$PROJECT_DIR$/src/de/frag/umlplugin/psi/DependencyAnalyzer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/frag/umlplugin/graphio/ImageGraphWriter.java" afterPath="$PROJECT_DIR$/src/de/frag/umlplugin/graphio/ImageGraphWriter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/frag/umlplugin/scopes/NamedSearchScopes.java" afterPath="$PROJECT_DIR$/src/de/frag/umlplugin/scopes/NamedSearchScopes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/frag/umlplugin/codenavigator/NavigatorProjectComponent.java" afterPath="$PROJECT_DIR$/src/de/frag/umlplugin/codenavigator/NavigatorProjectComponent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/frag/umlplugin/uml/actions/toolbar/OpenDiagramAction.java" afterPath="$PROJECT_DIR$/src/de/frag/umlplugin/uml/actions/toolbar/OpenDiagramAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/frag/umlplugin/graphio/SVGGraphWriter.java" afterPath="$PROJECT_DIR$/src/de/frag/umlplugin/graphio/SVGGraphWriter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/frag/umlplugin/graphio/SaveDialog.java" afterPath="$PROJECT_DIR$/src/de/frag/umlplugin/graphio/SaveDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/frag/umlplugin/scopes/SearchScopeComboBox.java" afterPath="$PROJECT_DIR$/src/de/frag/umlplugin/scopes/SearchScopeComboBox.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/frag/umlplugin/uml/UMLDiagramComponent.java" afterPath="$PROJECT_DIR$/src/de/frag/umlplugin/uml/UMLDiagramComponent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/de/frag/umlplugin/uml/UMLRefactoringListenerProvider.java" afterPath="$PROJECT_DIR$/src/de/frag/umlplugin/uml/UMLRefactoringListenerProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/META-INF/plugin.xml" afterPath="$PROJECT_DIR$/META-INF/plugin.xml" />
     </list>
     <ignored path="CodeNavigator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -866,12 +850,17 @@
       <workItem from="1411568686060" duration="578000" />
       <workItem from="1411570089018" duration="1217000" />
       <workItem from="1411622296939" duration="585000" />
-      <workItem from="1411623491312" duration="1897000" />
+      <workItem from="1411623491312" duration="1916000" />
     </task>
+    <task id="LOCAL-00001" summary=" IDEA 13 support">
+      <created>1411718648442</created>
+      <updated>1411718648442</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13337000" />
+    <option name="totallyTimeSpent" value="13356000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -911,6 +900,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36741215" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298397" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29073483" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36741215" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24984616" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -933,7 +923,6 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30285713" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="IntelliJad Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32951945" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Notes" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29073483" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34601226" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
